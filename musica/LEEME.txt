@@ -1,0 +1,48 @@
+CARPETA DE MÚSICA DE LA WEB
+===========================
+
+La canción elegida es "River Flows in You" de Yiruma.
+
+CÓMO FUNCIONA AHORA MISMO
+-------------------------
+Mientras esta carpeta esté vacía, el botón de la nota musical
+(esquina inferior derecha) abre la versión oficial de la canción
+en YouTube, en una pestaña nueva:
+
+  https://www.youtube.com/watch?v=7maJOI3QMu0
+
+Así nadie se queda sin escucharla y no alojamos ningún archivo
+con derechos de autor. Ese enlace se cambia en script.js, en
+CONFIG.musicaEnlace (una sola línea).
+
+SI QUERÉIS QUE SUENE DENTRO DE LA PROPIA WEB
+--------------------------------------------
+La web espera aquí un archivo llamado:
+
+  river-flows-in-you.mp3
+
+En cuanto exista, el botón lo reproduce directamente en la página
+(empezando siempre en silencio: solo suena si el invitado pulsa).
+
+IMPORTANTE — lo que comprobamos el 2 de agosto de 2026:
+la composición de Yiruma sigue protegida por derechos de autor,
+así que NO existen versiones con licencia libre de esta pieza en
+los bancos de música gratuita (lo buscamos en Pixabay Music y en
+Free Music Archive: no hay resultados reales, solo canciones que
+no tienen nada que ver). Cualquier web que ofrezca el MP3 "gratis"
+no tiene licencia para ello.
+
+Opciones legales si queréis audio alojado en la web:
+1. Dejar el enlace a YouTube tal como está (recomendado: es lo
+   que hace la web ahora y no cuesta nada).
+2. Encargar/comprar una interpretación CON licencia de uso web
+   (hay pianistas que venden covers con licencia en webs tipo
+   AudioJungle buscando "River Flows in You license").
+3. Cambiar a otra pieza de piano parecida que sí sea de dominio
+   público (por ejemplo "Clair de Lune" de Debussy o la
+   "Gymnopédie n.º 1" de Satie, gratis en https://musopen.org/).
+   En ese caso, guardad el MP3 aquí y cambiad la ruta en
+   script.js, en CONFIG.musica.
+
+Consejo: si el MP3 pesa más de ~5 MB, comprimidlo un poco
+(128-160 kbps es más que suficiente para música de fondo).

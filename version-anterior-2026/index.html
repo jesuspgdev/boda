@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Miguel &amp; Fatna · 17 de octubre de 2026</title>
+<meta name="description" content="Invitación e itinerario de la boda de Miguel y Fatna. Sábado 17 de octubre de 2026, Almería.">
+
+<meta name="theme-color" content="#FAF7F2">
+<meta name="color-scheme" content="light">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Miguel & Fatna">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Miguel & Fatna · Nos casamos">
+<meta property="og:description" content="17 de octubre de 2026 · Almería. Toda la información de la boda aquí.">
+<meta property="og:locale" content="es_ES">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&family=Parisienne&display=swap">
+
+<link rel="stylesheet" href="styles.css">
+<script src="script.js" defer></script>
+</head>
+
+<body>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<!-- ================================================================
+     DIBUJOS REUTILIZABLES (ramitas botánicas y silueta del corazón)
+     ================================================================ -->
+<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <g id="hoja"><path d="M0 0 C5 -6.5 14 -6.5 19 0 C14 6.5 5 6.5 0 0 Z"/></g>
+    <g id="ramita">
+      <path d="M2 35 C24 34 60 26 100 7" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+      <use href="#hoja" transform="translate(22,32.5) rotate(-58) scale(.72)"/>
+      <use href="#hoja" transform="translate(26,31.5) rotate(18) scale(.62)"/>
+      <use href="#hoja" transform="translate(46,27.5) rotate(-62) scale(.78)"/>
+      <use href="#hoja" transform="translate(50,26.5) rotate(14) scale(.66)"/>
+      <use href="#hoja" transform="translate(70,20) rotate(-66) scale(.7)"/>
+      <use href="#hoja" transform="translate(74,19) rotate(10) scale(.58)"/>
+      <use href="#hoja" transform="translate(90,12) rotate(-70) scale(.52)"/>
+      <circle cx="101" cy="6" r="2.1" fill="none" stroke="currentColor" stroke-width="1.4" vector-effect="non-scaling-stroke"/>
+    </g>
+    <clipPath id="clipCorazon" clipPathUnits="userSpaceOnUse">
+      <path d="M50,91 C50,91 5,59 5,32 C5,16 17,4.5 30.5,4.5 C39.5,4.5 47,10 50,17 C53,10 60.5,4.5 69.5,4.5 C83,4.5 95,16 95,32 C95,59 50,91 50,91 Z"/>
+    </clipPath>
+  </defs>
+</svg>
+
+<!-- ================================================================
+     BARRA SUPERIOR
+     ================================================================ -->
+<header class="barra" id="barra">
+  <a class="monograma" href="#inicio" aria-label="Inicio">M<span>&amp;</span>F</a>
+
+  <nav class="barra-nav" aria-label="Secciones">
+    <a href="#invitacion" data-ar="الدعوة">Invitación</a>
+    <a href="#cuenta-atras" data-ar="العد التنازلي">Cuenta atrás</a>
+    <a href="#itinerario" data-ar="البرنامج">Itinerario</a>
+    <a href="#ubicacion" data-ar="المكان">Ubicación</a>
+    <a href="#actividades" data-ar="الأنشطة">Actividades</a>
+    <a href="#confirmar" data-ar="التأكيد">Confirmar</a>
+  </nav>
+
+  <div class="barra-acciones">
+    <div class="idioma" role="group" aria-label="Idioma / اللغة">
+      <button type="button" id="btn-es" aria-pressed="true">ES</button>
+      <button type="button" id="btn-ar" aria-pressed="false" lang="ar">العربية</button>
+    </div>
+
+    <button type="button" class="hamburguesa" id="btn-menu" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ================================================================
+     MENÚ A PANTALLA COMPLETA (solo móvil)
+     ================================================================ -->
+<div class="menu" id="menu" hidden>
+  <nav class="menu-nav" aria-label="Menú">
+    <a href="#invitacion" data-ar="الدعوة">Invitación</a>
+    <a href="#cuenta-atras" data-ar="العد التنازلي">Cuenta atrás</a>
+    <a href="#itinerario" data-ar="البرنامج">Itinerario</a>
+    <a href="#ubicacion" data-ar="المكان">Ubicación</a>
+    <a href="#actividades" data-ar="الأنشطة">Actividades</a>
+    <a href="#confirmar" data-ar="تأكيد الحضور">Confirmar asistencia</a>
+  </nav>
+
+  <svg class="ramita menu-adorno" viewBox="0 0 106 40" aria-hidden="true"><use href="#ramita"/></svg>
+</div>
+
+<main id="contenido">
+
+<!-- ================================================================
+     1 · PORTADA
+     ================================================================ -->
+<section class="portada" id="inicio">
+  <div class="portada-marco animar">
+
+    <!-- FOTO DE LA PAREJA ------------------------------------------------
+         1) Guarda la foto en esta misma carpeta, por ejemplo  foto.jpg
+         2) Escribe el nombre dentro de href="" en la etiqueta image
+         3) Borra entero el bloque g con id="sin-foto"
+         Usa una foto cuadrada para que no se deforme.
+    ------------------------------------------------------------------- -->
+    <svg class="corazon" viewBox="0 0 100 96" role="img" aria-label="Foto de Miguel y Fatna dentro de un corazón">
+      <g clip-path="url(#clipCorazon)">
+        <image href="" x="0" y="0" width="100" height="96" preserveAspectRatio="xMidYMid slice"/>
+        <g id="sin-foto">
+          <rect class="sin-foto-fondo" x="0" y="0" width="100" height="96"/>
+          <text class="sin-foto-texto" x="50" y="42" text-anchor="middle">VUESTRA</text>
+          <text class="sin-foto-texto" x="50" y="54" text-anchor="middle">FOTO</text>
+        </g>
+      </g>
+      <path class="corazon-borde" d="M50,91 C50,91 5,59 5,32 C5,16 17,4.5 30.5,4.5 C39.5,4.5 47,10 50,17 C53,10 60.5,4.5 69.5,4.5 C83,4.5 95,16 95,32 C95,59 50,91 50,91 Z"/>
+    </svg>
+
+    <div class="ramitas" aria-hidden="true">
+      <svg class="ramita espejo" viewBox="0 0 106 40"><use href="#ramita"/></svg>
+      <svg class="ramita" viewBox="0 0 106 40"><use href="#ramita"/></svg>
+    </div>
+
+    <p class="portada-saludo" data-ar="سنتزوّج!">¡Nos casamos!</p>
+    <p class="portada-sub" data-ar="ويسعدنا أن ندعوك إلى حفل زفافنا">Y nos gustaría invitarte a nuestra boda</p>
+
+    <h1 class="portada-nombres">
+      <span data-ar="ميغيل">Miguel</span>
+      <span class="amp" aria-hidden="true" data-ar="و">&amp;</span>
+      <span data-ar="فاطنة">Fatna</span>
+    </h1>
+
+    <p class="portada-fecha">
+      <span data-ar="السبت">Sábado</span>
+      <i aria-hidden="true"></i>
+      <span data-ar="١٧ أكتوبر">17 de octubre</span>
+      <i aria-hidden="true"></i>
+      <span data-ar="٢٠٢٦">2026</span>
+    </p>
+
+    <p class="portada-ciudad" data-ar="ألميريا · إسبانيا">Almería · España</p>
+  </div>
+
+  <div class="bajar" aria-hidden="true"><span></span></div>
+</section>
+
+<!-- ================================================================
+     2 · INVITACIÓN
+     ================================================================ -->
+<section id="invitacion">
+  <div class="contenedor estrecho centro">
+    <p class="antetitulo animar" data-ar="الدعوة">La invitación</p>
+    <h2 class="titulo animar" data-ar="نتشرّف بدعوتك">Nos encantaría contar contigo</h2>
+
+    <div class="filete animar" aria-hidden="true">
+      <span></span>
+      <svg viewBox="0 0 12 12"><path d="M6 .8 11.2 6 6 11.2.8 6Z" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+      <span></span>
+    </div>
+
+    <div class="texto animar retraso-1">
+      <p data-ar="بعد سنوات من مشاركة كل شيء، قرّرنا أن نقول &quot;نعم&quot;. وما من طريقة أجمل للاحتفال بذلك من أن نكون محاطين بمن نحبّهم.">
+        Después de mucho tiempo compartiéndolo todo, hemos decidido decir <em>sí</em>.
+        Y no se nos ocurre mejor forma de celebrarlo que rodeados de la gente que queremos.
+      </p>
+      <p data-ar="لذلك نودّ دعوتك إلى حفل زفافنا يوم <strong>السبت ١٧ أكتوبر ٢٠٢٦</strong>، في <strong>النادي الفروسي والمركّب الرياضي بألميريا</strong>.">
+        Por eso queremos invitarte a nuestra boda el
+        <strong>sábado 17 de octubre de 2026</strong>, en el
+        <strong>Club Hípico y Polideportivo de Almería</strong>.
+      </p>
+      <p data-ar="سيكون يومًا مليئًا بالطعام والموسيقى والرقص والضحك. نأمل ألّا تفوّته.">
+        Será un día largo, con comida, música, baile y muchas ganas de pasarlo bien.
+        Esperamos que no te lo pierdas.
+      </p>
+    </div>
+
+    <ul class="datos animar retraso-2">
+      <li>
+        <span class="datos-etq" data-ar="التاريخ">Fecha</span>
+        <span class="datos-val" data-ar="السبت ١٧ أكتوبر">Sábado 17 de octubre</span>
+        <span class="datos-pie" data-ar="٢٠٢٦">de 2026</span>
+      </li>
+      <li>
+        <span class="datos-etq" data-ar="مراسم الزفاف">Ceremonia</span>
+        <!-- EDITAR HORA: cambia el texto de abajo por la hora real, por ejemplo 17:30 h -->
+        <span class="datos-val" data-ar="الساعة تُحدَّد لاحقًا">Hora por confirmar</span>
+        <span class="datos-pie" data-ar="سنُعلمك هنا">Te avisaremos aquí mismo</span>
+      </li>
+      <li>
+        <span class="datos-etq" data-ar="المكان">Lugar</span>
+        <span class="datos-val" data-ar="النادي الفروسي">Club Hípico</span>
+        <span class="datos-pie" data-ar="والمركّب الرياضي بألميريا">y Polideportivo de Almería</span>
+      </li>
+    </ul>
+
+    <div class="animar retraso-2 acciones-secundarias">
+      <button type="button" class="boton fino" id="btn-calendario">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3"/>
+        </svg>
+        <span data-ar="أضِف إلى التقويم">Añadir al calendario</span>
+      </button>
+
+      <button type="button" class="boton fino" id="btn-compartir" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3.5v12M12 3.5 8 7.5M12 3.5l4 4M5 13v6.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V13"/>
+        </svg>
+        <span data-ar="شارك الدعوة">Compartir invitación</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     3 · CUENTA ATRÁS
+     ================================================================ -->
+<section id="cuenta-atras" class="crema">
+  <div class="contenedor centro">
+    <p class="antetitulo animar" data-ar="العد التنازلي">Cuenta atrás</p>
+    <h2 class="titulo animar" data-ar="كم بقي من الوقت؟">Lo que queda para el gran día</h2>
+    <p class="entradilla animar" data-ar="١٧ أكتوبر ٢٠٢٦ · بتوقيت إسبانيا">17 de octubre de 2026 · hora peninsular española</p>
+
+    <div class="reloj animar retraso-1" id="reloj">
+      <div class="reloj-caja"><b id="cd-dias">--</b><span data-ar="أيام">Días</span></div>
+      <div class="reloj-caja"><b id="cd-horas">--</b><span data-ar="ساعات">Horas</span></div>
+      <div class="reloj-caja"><b id="cd-min">--</b><span data-ar="دقائق">Min.</span></div>
+      <div class="reloj-caja"><b id="cd-seg">--</b><span data-ar="ثوانٍ">Seg.</span></div>
+    </div>
+
+    <p class="reloj-aviso animar retraso-2" id="cd-aviso" hidden></p>
+  </div>
+</section>
+
+<!-- ================================================================
+     4 · ITINERARIO
+     ================================================================ -->
+<section id="itinerario">
+  <div class="contenedor centro">
+    <p class="antetitulo animar" data-ar="البرنامج">Itinerario</p>
+    <h2 class="titulo animar" data-ar="برنامج اليوم">El programa del día</h2>
+    <p class="entradilla animar" data-ar="سنُحدّث المواعيد بمجرد تأكيدها.">Iremos ajustando las horas conforme se confirmen.</p>
+
+    <div class="filete animar" aria-hidden="true">
+      <span></span>
+      <svg viewBox="0 0 12 12"><path d="M6 .8 11.2 6 6 11.2.8 6Z" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+      <span></span>
+    </div>
+
+    <!-- EDITAR HORA: sustituye cada "--:--" por la hora real y borra su etiqueta "Por confirmar" -->
+    <ol class="linea-tiempo">
+      <li class="animar">
+        <p class="lt-hora">--:--</p>
+        <div class="lt-cuerpo">
+          <h3><span data-ar="استقبال الضيوف">Llegada y recepción</span><em class="etiqueta" data-ar="قيد التأكيد">Por confirmar</em></h3>
+          <p data-ar="نستقبلك بمشروب ترحيبي، على مهل ودون استعجال.">Te recibimos con algo fresco para brindar. Sin prisa, ve llegando cuando puedas.</p>
+        </div>
+      </li>
+      <li class="animar">
+        <p class="lt-hora">--:--</p>
+        <div class="lt-cuerpo">
+          <h3><span data-ar="مراسم الزفاف">Ceremonia</span><em class="etiqueta" data-ar="قيد التأكيد">Por confirmar</em></h3>
+          <p data-ar="اللحظة الأهم. نرجو الحضور قبلها بقليل.">El momento importante. Te pedimos estar unos minutos antes para que empiece a su hora.</p>
+        </div>
+      </li>
+      <li class="animar">
+        <p class="lt-hora">--:--</p>
+        <div class="lt-cuerpo">
+          <h3><span data-ar="كوكتيل">Cóctel</span><em class="etiqueta" data-ar="قيد التأكيد">Por confirmar</em></h3>
+          <p data-ar="أطباق خفيفة ومشروبات وموسيقى في الهواء الطلق، ووقت للصور.">Aperitivo, bebida y música al aire libre. Momento perfecto para las fotos y los saludos.</p>
+        </div>
+      </li>
+      <li class="animar">
+        <p class="lt-hora">--:--</p>
+        <div class="lt-cuerpo">
+          <h3><span data-ar="العشاء">Cena</span><em class="etiqueta" data-ar="قيد التأكيد">Por confirmar</em></h3>
+          <p data-ar="نجلس معًا. ستجد اسمك على لوحة الأماكن عند المدخل.">Nos sentamos todos. Encontrarás tu sitio en el plano de mesas de la entrada.</p>
+        </div>
+      </li>
+      <li class="animar">
+        <p class="lt-hora">--:--</p>
+        <div class="lt-cuerpo">
+          <h3><span data-ar="الحفلة والمشروبات">Fiesta y barra libre</span><em class="etiqueta" data-ar="قيد التأكيد">Por confirmar</em></h3>
+          <p data-ar="نفتح حلبة الرقص. أحضر حذاءً مريحًا — ستحتاجه.">Se abre la pista y no la cerramos pronto. Trae calzado cómodo, lo vas a necesitar.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================================================================
+     5 · UBICACIÓN
+     ================================================================ -->
+<section id="ubicacion" class="crema">
+  <div class="contenedor centro">
+    <p class="antetitulo animar" data-ar="المكان">Ubicación</p>
+    <h2 class="titulo animar" data-ar="أين سنحتفل">Dónde lo celebramos</h2>
+
+    <div class="lugar animar retraso-1">
+      <p class="lugar-nombre" data-ar="النادي الفروسي والمركّب الرياضي بألميريا">Club Hípico y Polideportivo de Almería</p>
+      <p class="lugar-dir" data-ar="طريق فياطور نحو الألكيان، كم ٤٫٢ · ٠٤١٢٠ الألكيان، ألميريا">Carretera Viator al Alquián, km 4,2<br>04120 El Alquián, Almería</p>
+    </div>
+
+    <!-- El mapa no se descarga hasta que se acerca a la pantalla, para no gastar
+         datos móviles de quien solo abre la invitación a mirar la fecha. -->
+    <div class="mapa animar retraso-1" id="mapa">
+      <iframe
+        title="Mapa del Club Hípico y Polideportivo de Almería"
+        data-src="https://www.google.com/maps?q=Club%20H%C3%ADpico%20y%20Polideportivo%20de%20Almer%C3%ADa&amp;hl=es&amp;z=15&amp;output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen></iframe>
+      <p class="mapa-cargando" data-ar="جارٍ تحميل الخريطة…">Cargando el mapa…</p>
+    </div>
+
+    <div class="animar retraso-2 acciones-secundarias">
+      <a class="boton" id="btn-mapa" href="https://maps.app.goo.gl/RqoNce16bi8eU23t7" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/>
+        </svg>
+        <span data-ar="كيفية الوصول">Cómo llegar</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     6 · ACTIVIDADES
+     ================================================================ -->
+<section id="actividades">
+  <div class="contenedor centro">
+    <p class="antetitulo animar" data-ar="الأنشطة">Actividades</p>
+    <h2 class="titulo animar" data-ar="ما ينتظرك في ذلك اليوم">Lo que te espera ese día</h2>
+
+    <ul class="tarjetas">
+      <li class="tarjeta animar">
+        <span class="tarjeta-icono" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 8.5h3.2l1.6-2.4h8.4l1.6 2.4H21v10H3Z"/><circle cx="12" cy="13.4" r="3.6"/>
+          </svg>
+        </span>
+        <h3 data-ar="ركن التصوير">Photocall</h3>
+        <p data-ar="ركن مُجهَّز للصور، بمفردك أو مع الجميع. لا تخجل.">Un rincón preparado para las fotos, solo o en grupo. No seas tímido, que luego se agradecen.</p>
+      </li>
+
+      <li class="tarjeta animar retraso-1">
+        <span class="tarjeta-icono" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4.5h6a2.5 2.5 0 0 1 2 1 2.5 2.5 0 0 1 2-1h6v13h-6a2.5 2.5 0 0 0-2 1 2.5 2.5 0 0 0-2-1H4Z"/><path d="M12 6.5v12"/>
+          </svg>
+        </span>
+        <h3 data-ar="دفتر التوقيعات">Libro de firmas</h3>
+        <p data-ar="اترك لنا كلمة أو نصيحة أو رسمًا. سنقرأه كثيرًا لاحقًا.">Déjanos unas palabras, un consejo o un dibujo. Lo leeremos muchas veces, prometido.</p>
+      </li>
+
+      <li class="tarjeta animar retraso-2">
+        <span class="tarjeta-icono" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="4" width="16" height="12.5" rx="2"/><path d="M4 11.5h16M7.5 20v-3.5M16.5 20v-3.5"/><circle cx="7.8" cy="14" r=".9"/><circle cx="16.2" cy="14" r=".9"/>
+          </svg>
+        </span>
+        <h3><span data-ar="حافلة العودة">Autobús de vuelta</span><em class="etiqueta" data-ar="قيد التأكيد">Por confirmar</em></h3>
+        <p data-ar="ندرس توفير حافلة للعودة إلى المدينة. أخبرنا في استمارة التأكيد إن كنت ستحتاجها.">Estamos organizando un autobús de vuelta a la ciudad. Dinos en el formulario si lo necesitas.</p>
+      </li>
+    </ul>
+
+    <p class="aviso animar retraso-2" data-ar="<strong>ملاحظة:</strong> سنُضيف المزيد من الأنشطة هنا نفسه كلما اقترب الموعد. احتفظ بهذه الصفحة وعُد إليها من حين لآخر.">
+      <strong>Ojo:</strong> iremos confirmando más actividades aquí mismo conforme se acerque la fecha.
+      Guarda esta página y échale un vistazo de vez en cuando.
+    </p>
+  </div>
+</section>
+
+<!-- ================================================================
+     7 · CONFIRMAR ASISTENCIA
+     ================================================================ -->
+<section id="confirmar" class="crema">
+  <div class="contenedor estrecho">
+    <div class="rsvp animar">
+      <div class="ramitas" aria-hidden="true">
+        <svg class="ramita espejo" viewBox="0 0 106 40"><use href="#ramita"/></svg>
+        <svg class="ramita" viewBox="0 0 106 40"><use href="#ramita"/></svg>
+      </div>
+
+      <p class="antetitulo" data-ar="تأكيد الحضور">Confirmación de asistencia</p>
+      <h2 class="titulo" data-ar="أكّد حضورك قبل">Confirma tu asistencia antes del</h2>
+      <p class="rsvp-fecha" data-ar="١٧ غشت ٢٠٢٦">17 de agosto de 2026</p>
+      <p class="entradilla" data-ar="يساعدنا ذلك كثيرًا في التنظيم. شكرًا لك!">Nos ayuda muchísimo para organizarlo todo. ¡Gracias!</p>
+
+      <ul class="rsvp-lista">
+        <li data-ar="اسمك">Tu nombre</li>
+        <li data-ar="عدد المرافقين">Número de acompañantes</li>
+        <li data-ar="الحساسيات أو الأنظمة الغذائية الخاصة">Alergias o dietas especiales</li>
+        <li data-ar="هل تحتاج إلى الحافلة؟">Si necesitas el autobús</li>
+      </ul>
+
+      <!-- El enlace de este botón se pone en script.js, en CONFIG.formulario -->
+      <a class="boton solido grande" id="btn-rsvp" href="#" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 6 9 17l-5-5"/>
+        </svg>
+        <span data-ar="أؤكّد حضوري">Confirmar asistencia</span>
+      </a>
+
+      <p class="rsvp-nota" data-ar="إن كانت لديك أي مشكلة مع الاستمارة، اتصل بنا مباشرة.">
+        Si tienes cualquier problema con el formulario, escríbenos directamente.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     8 · CIERRE
+     ================================================================ -->
+<section class="cierre centro">
+  <div class="contenedor estrecho">
+    <div class="ramitas animar" aria-hidden="true">
+      <svg class="ramita espejo" viewBox="0 0 106 40"><use href="#ramita"/></svg>
+      <svg class="ramita" viewBox="0 0 106 40"><use href="#ramita"/></svg>
+    </div>
+    <p class="cierre-frase animar retraso-1" data-ar="سيسعدنا كثيرًا أن نتقاسم معك هذا اليوم.">Nos hará muchísima ilusión compartir este día contigo.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p class="pie-nombres"><span data-ar="ميغيل">Miguel</span> <span data-ar="و">&amp;</span> <span data-ar="فاطنة">Fatna</span></p>
+  <p data-ar="١٧ أكتوبر ٢٠٢٦ · ألميريا">17 · 10 · 2026 &nbsp;·&nbsp; Almería</p>
+</footer>
+
+<!-- ================================================================
+     BARRA DE ACCIONES INFERIOR (solo móvil)
+     ================================================================ -->
+<div class="barra-inferior" id="barra-inferior" hidden>
+  <a class="boton fino" href="#ubicacion">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/>
+    </svg>
+    <span data-ar="المكان">Ubicación</span>
+  </a>
+  <a class="boton solido" id="btn-rsvp-movil" href="#confirmar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M20 6 9 17l-5-5"/>
+    </svg>
+    <span data-ar="أكّد حضورك">Confirmar</span>
+  </a>
+</div>
+
+<!-- Mensajes breves (copiado de enlace, calendario descargado, etc.) -->
+<p class="mensaje" id="mensaje" role="status" aria-live="polite"></p>
+
+</body>
+</html>

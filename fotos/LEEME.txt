@@ -1,0 +1,26 @@
+CARPETA DE FOTOS DE LA WEB
+==========================
+
+Guarda aquí las fotos con estos nombres exactos (en minúsculas):
+
+  portada.jpg   La foto de los novios en la puerta marrón (primer plano,
+                ella con el ramo de rosas blancas). Es el fondo de la
+                portada. PENDIENTE: Miguel tiene que pasar la foto
+                definitiva; mientras tanto la portada se ve en papel
+                marfil y no se rompe nada.
+
+  arco.jpg      La foto bajo el arco blanco con las vistas al valle
+                verde. Es el fondo de la sección con la frase y la capa
+                oscura (efecto parallax), más abajo en la página.
+
+  ramo.jpg      El primer plano estilo selfie con el ramo de flores.
+                Aparece en redondo dentro de la corona dorada, al final
+                de la página.
+
+Consejos:
+- JPG mejor que PNG (pesan mucho menos).
+- Si una foto pesa más de ~500 KB, redimensiónala a unos 1600 px de
+  ancho antes de subirla: en el móvil se verá igual de bien y cargará
+  mucho más rápido.
+- Si quieres usar otro nombre de archivo, cambia la línea
+  correspondiente en script.js, en CONFIG.fotos (una sola línea).

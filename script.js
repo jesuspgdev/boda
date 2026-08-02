@@ -1,5 +1,5 @@
 /* =================================================================
-   BODA MIGUEL & FATNA · Comportamiento de la página
+   BODA FATNA & MIGUEL · Comportamiento de la página
    -----------------------------------------------------------------
    El archivo se carga con "defer", así que cuando se ejecuta el HTML
    ya está montado y no hace falta esperar a ningún evento.
@@ -17,6 +17,8 @@
      9. Añadir al calendario
     10. Compartir invitación
     11. Enlace del formulario
+    12. Fotos (portada, parallax y cierre)
+    13. Música de fondo
    ================================================================= */
 
 
@@ -27,26 +29,53 @@ const CONFIG = {
 
   /* Fecha y hora de la boda.
      El "+02:00" es el horario de verano español, que el 17 de octubre
-     de 2026 sigue vigente. Cuando se confirme la hora de la ceremonia,
+     de 2027 sigue vigente. Cuando se confirme la hora de la ceremonia,
      cambia solo "12:00:00" (por ejemplo "17:30:00").
-     Así la cuenta atrás sale bien aunque el invitado esté en Marruecos
-     o en cualquier otro país. */
-  fechaBoda: '2026-10-17T12:00:00+02:00',
+     Así la cuenta atrás sale bien esté donde esté el invitado. */
+  fechaBoda: '2027-10-17T12:00:00+02:00',
 
   /* Cuántas horas dura el evento. Solo se usa para el archivo de
      calendario, para que el invitado no se bloquee el día entero. */
   duracionHoras: 10,
 
   /* Enlace del formulario de confirmación (Google Forms).
-     Mientras esté vacío, el botón se muestra apagado y avisa de que
-     todavía no está listo. Pega aquí la URL y listo. */
-  formulario: '',
+     Se abre en pestaña nueva desde todos los botones de confirmar. */
+  formulario: 'https://docs.google.com/forms/d/e/1FAIpQLSdD9nJdal2QIGYYscEnS0RkpFOHQZ9p-4FgyFSfkqTuB9Z9xw/viewform?usp=header',
+
+  /* Enlace de Google Maps (el que compartió la pareja, tal cual) */
+  mapa: 'https://maps.app.goo.gl/hFBxsLLNG9jkrzfWA?g_st=ig',
 
   /* Datos del lugar, para el archivo de calendario */
-  lugar: 'Club Hípico y Polideportivo de Almería, Carretera Viator al Alquián km 4,2, 04120 El Alquián, Almería',
+  lugar: 'Sala Sofía Palacios, Camino de la Mojonera 50, 04745 La Mojonera, Almería',
 
   /* Título del evento en el calendario */
-  tituloEvento: 'Boda de Miguel y Fatna'
+  tituloEvento: 'Boda de Fatna y Miguel',
+
+  /* FOTOS · basta con guardar cada archivo en la carpeta "fotos" con
+     estos nombres (o cambiar aquí el nombre y listo, una sola línea).
+     Si un archivo no existe todavía, la web se ve bien igualmente.
+
+     PENDIENTE: Miguel tiene que pasar la foto definitiva de la
+     portada. Cuando la tengas, guárdala como fotos/portada.jpg
+     (o cambia solo la línea de abajo). */
+  fotos: {
+    portada:  'fotos/portada.jpg',   /* los novios en la puerta marrón (fondo del inicio) */
+    parallax: 'fotos/arco.jpg',      /* el arco con vistas al valle (sección con capa oscura) */
+    banda:    'fotos/foto.jpg',      /* el plano abierto de la puerta (banda entre regalos y confirmar) */
+    cierre:   'fotos/ramo.jpg'       /* el primer plano con el ramo (dentro de la corona) */
+  },
+
+  /* MÚSICA · "River Flows in You" (Yiruma). La pieza sigue con
+     derechos de autor y no hay versiones con licencia libre de verdad
+     (lo comprobamos en Pixabay y Free Music Archive), así que:
+     - Si guardas un MP3 con este nombre en la carpeta "musica"
+       (por ejemplo una versión que tengáis con licencia), sonará
+       aquí mismo, en la propia web.
+     - Mientras el archivo no exista, el botón de la nota abre la
+       versión oficial de YouTube en una pestaña nueva (el enlace de
+       abajo). Más detalles en musica/LEEME.txt. */
+  musica: 'musica/river-flows-in-you.mp3',
+  musicaEnlace: 'https://www.youtube.com/watch?v=7maJOI3QMu0'
 };
 
 
@@ -80,6 +109,8 @@ function avisar(texto){
    Cada texto traducible lleva en el HTML un atributo data-ar con su
    versión en árabe. Al arrancar guardamos el original en español en
    data-es, y a partir de ahí solo intercambiamos uno por otro.
+   La maquetación se voltea sola: la hoja de estilos usa propiedades
+   lógicas, así que basta con poner dir="rtl" en la página.
    ================================================================ */
 const Idioma = (() => {
   const traducibles = $$('[data-ar]');
@@ -90,16 +121,18 @@ const Idioma = (() => {
   const CIFRAS_AR = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
 
   const TITULOS = {
-    es: 'Miguel & Fatna · 17 de octubre de 2026',
-    ar: 'ميغيل وفاطنة · ١٧ أكتوبر ٢٠٢٦'
+    es: 'Fatna & Miguel · 17 de octubre de 2027',
+    ar: 'فاطنة وميغيل · ١٧ أكتوبر ٢٠٢٧'
   };
 
   const TEXTOS = {
-    hoy:            { es:'¡Hoy es el gran día!',                        ar:'اليوم هو اليوم الكبير!' },
-    yaCasados:      { es:'¡Ya estamos casados! Gracias por acompañarnos.', ar:'لقد تزوّجنا! شكرًا لمشاركتنا هذا اليوم.' },
-    enlaceCopiado:  { es:'Enlace copiado. ¡Compártelo!',                 ar:'تم نسخ الرابط. شاركه!' },
-    calendarioOk:   { es:'Evento descargado. Ábrelo para añadirlo.',     ar:'تم تنزيل الحدث. افتحه لإضافته.' },
-    sinFormulario:  { es:'El formulario aún no está listo. Lo publicaremos aquí muy pronto.', ar:'الاستمارة ليست جاهزة بعد. سننشرها هنا قريبًا.' }
+    hoy:           { es:'¡Hoy es el gran día!',                            ar:'اليوم هو اليوم الكبير!' },
+    yaCasados:     { es:'¡Ya estamos casados! Gracias por acompañarnos.',   ar:'لقد تزوّجنا! شكرًا لمشاركتنا هذا اليوم.' },
+    enlaceCopiado: { es:'Enlace copiado. ¡Compártelo!',                     ar:'تم نسخ الرابط. شاركه!' },
+    calendarioOk:  { es:'Evento descargado. Ábrelo para añadirlo.',         ar:'تم تنزيل الحدث. افتحه لإضافته.' },
+    sinFormulario: { es:'El formulario aún no está listo. Lo publicaremos aquí muy pronto.', ar:'الاستمارة ليست جاهزة بعد. سننشرها هنا قريبًا.' },
+    sinMusica:     { es:'La música estará lista muy pronto.',               ar:'ستكون الموسيقى جاهزة قريبًا.' },
+    musicaYoutube: { es:'Abrimos nuestra canción en YouTube. ♪',            ar:'نفتح أغنيتنا على يوتيوب. ♪' }
   };
 
   let actual = 'es';
@@ -125,7 +158,7 @@ const Idioma = (() => {
     document.dispatchEvent(new CustomEvent('idioma:cambiado', { detail:{ lang } }));
   }
 
-  /* Convierte 76 en ٧٦ cuando la página está en árabe */
+  /* Convierte 441 en ٤٤١ cuando la página está en árabe */
   function numero(valor){
     const texto = String(valor);
     return actual === 'ar' ? texto.replace(/\d/g, d => CIFRAS_AR[+d]) : texto;
@@ -396,7 +429,7 @@ const Idioma = (() => {
 (() => {
   const boton = $('#btn-calendario');
 
-  /* 20261017T100000Z: el formato que pide el estándar iCalendar */
+  /* 20271017T100000Z: el formato que pide el estándar iCalendar */
   const enFormatoICS = fecha =>
     fecha.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
 
@@ -412,11 +445,11 @@ const Idioma = (() => {
     return [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
-      'PRODID:-//Boda Miguel y Fatna//ES',
+      'PRODID:-//Boda Fatna y Miguel//ES',
       'CALSCALE:GREGORIAN',
       'METHOD:PUBLISH',
       'BEGIN:VEVENT',
-      'UID:boda-miguel-fatna-20261017',
+      'UID:boda-fatna-miguel-20271017',
       `DTSTAMP:${enFormatoICS(new Date())}`,
       `DTSTART:${enFormatoICS(inicio)}`,
       `DTEND:${enFormatoICS(fin)}`,
@@ -439,7 +472,7 @@ const Idioma = (() => {
     const enlace = document.createElement('a');
 
     enlace.href = url;
-    enlace.download = 'boda-miguel-y-fatna.ics';
+    enlace.download = 'boda-fatna-y-miguel.ics';
     document.body.appendChild(enlace);
     enlace.click();
     enlace.remove();
@@ -469,8 +502,8 @@ const Idioma = (() => {
 
   boton.addEventListener('click', async () => {
     const datos = {
-      title: 'Miguel & Fatna',
-      text: '¡Nos casamos! 17 de octubre de 2026, Almería.',
+      title: 'Fatna & Miguel',
+      text: '¡Nos casamos! 17 de octubre de 2027, Almería.',
       url: location.href
     };
 
@@ -498,24 +531,229 @@ const Idioma = (() => {
 
 /* ================================================================
    11 · ENLACE DEL FORMULARIO
+   -----------------------------------------------------------------
+   Todos los botones con la clase "enlace-formulario" (el de la
+   portada y el de la sección de confirmar) abren el Google Forms
+   en una pestaña nueva.
    ================================================================ */
 (() => {
-  const boton = $('#btn-rsvp');
+  const botones = $$('.enlace-formulario');
   const url = (CONFIG.formulario || '').trim();
 
-  if (url){
-    boton.href = url;
-    return;
+  botones.forEach(boton => {
+    if (url){
+      boton.href = url;
+      boton.target = '_blank';
+      boton.rel = 'noopener noreferrer';
+      return;
+    }
+
+    /* Todavía no hay formulario: el botón se ve apagado y lo explica */
+    boton.classList.add('sin-enlace');
+    boton.setAttribute('aria-disabled','true');
+    boton.removeAttribute('target');
+    boton.href = '#confirmar';
+
+    boton.addEventListener('click', evento => {
+      evento.preventDefault();
+      avisar(Idioma.texto('sinFormulario'));
+    });
+  });
+})();
+
+
+/* ================================================================
+   12 · FOTOS (portada, parallax y cierre)
+   -----------------------------------------------------------------
+   Cada foto se intenta cargar primero en memoria. Solo si el archivo
+   existe de verdad se pone en la página; si falta, la web se queda
+   con su aspecto de papel marfil y no se rompe nada.
+   ================================================================ */
+(() => {
+  function cargarFoto(ruta, alCargar){
+    if (!ruta) return;
+    const foto = new Image();
+    foto.onload = () => alCargar(ruta);
+    foto.src = ruta;
   }
 
-  /* Todavía no hay formulario: el botón se ve apagado y lo explica */
-  boton.classList.add('sin-enlace');
-  boton.setAttribute('aria-disabled','true');
-  boton.removeAttribute('target');
-  boton.href = '#confirmar';
-
-  boton.addEventListener('click', evento => {
-    evento.preventDefault();
-    avisar(Idioma.texto('sinFormulario'));
+  /* Portada: la foto pasa a ser el fondo y la tarjeta flota encima */
+  cargarFoto(CONFIG.fotos.portada, ruta => {
+    const portada = $('#inicio');
+    portada.style.setProperty('--foto-portada', `url("${ruta}")`);
+    portada.classList.add('con-foto');
   });
+
+  /* Sección parallax: fondo + capa oscura + texto en blanco */
+  cargarFoto(CONFIG.fotos.parallax, ruta => {
+    const seccion = $('#parallax');
+    seccion.style.setProperty('--foto-parallax', `url("${ruta}")`);
+    seccion.classList.add('con-foto');
+  });
+
+  /* Banda entre los regalos y la confirmación: si no hay foto, la
+     sección sigue oculta y no queda un hueco vacío en medio */
+  cargarFoto(CONFIG.fotos.banda, ruta => {
+    const banda = $('#banda-foto');
+    banda.style.setProperty('--foto-banda', `url("${ruta}")`);
+    banda.hidden = false;
+  });
+
+  /* Cierre: la foto redonda dentro de la corona dorada */
+  cargarFoto(CONFIG.fotos.cierre, ruta => {
+    const imagen = $('#foto-cierre');
+    imagen.src = ruta;
+    imagen.alt = 'Fatna y Miguel';
+    imagen.hidden = false;
+  });
+})();
+
+
+/* ================================================================
+   13 · MÚSICA DE FONDO
+   -----------------------------------------------------------------
+   La música arranca sola al entrar. Ojo: TODOS los navegadores
+   bloquean el sonido automático en la primera visita (es una norma
+   suya, no algo que se pueda desactivar desde la web). Por eso:
+
+     1. Lo intentamos nada más cargar.
+     2. Si el navegador lo bloquea, dejamos preparado el arranque
+        para el primer gesto del invitado (un toque, un scroll, una
+        tecla). En la práctica suena en cuanto empieza a mirar.
+
+   Si alguien la apaga con el botón de la nota, se respeta su
+   decisión y ya no se le vuelve a poner en las siguientes visitas.
+
+   Si el MP3 está en la carpeta "musica", suena aquí mismo, en la
+   web. Si todavía no está, el botón abre la versión oficial de
+   YouTube en una pestaña nueva (CONFIG.musicaEnlace), para que
+   nadie se quede sin la canción.
+   ================================================================ */
+(() => {
+  const botones = [$('#btn-musica'), $('#btn-musica-pie')].filter(Boolean);
+  const flotante = $('#btn-musica');
+  const ruta = (CONFIG.musica || '').trim();
+  const enlace = (CONFIG.musicaEnlace || '').trim();
+
+  if ((!ruta && !enlace) || botones.length === 0) return;
+
+  flotante.hidden = false;
+
+  let audio = null;
+  let fallo = !ruta;
+
+  /* ¿El invitado la apagó a mano alguna vez? */
+  const silenciada = () => {
+    try { return localStorage.getItem('musica-boda') === 'no'; } catch(e){ return false; }
+  };
+  const recordar = valor => {
+    try { localStorage.setItem('musica-boda', valor); } catch(e){ /* modo privado */ }
+  };
+
+  /* Preguntamos pronto si el archivo existe (solo los primeros KB,
+     no la canción entera): así el primer toque ya sabe qué hacer. */
+  if (ruta){
+    const sonda = new Audio();
+    sonda.preload = 'metadata';
+    sonda.addEventListener('error', () => { fallo = true; });
+    sonda.src = ruta;
+  }
+
+  function pintarEstado(sonando){
+    flotante.setAttribute('aria-pressed', String(sonando));
+    flotante.setAttribute('aria-label', sonando ? 'Pausar la música' : 'Activar la música');
+  }
+
+  function abrirEnlace(){
+    if (!enlace){
+      avisar(Idioma.texto('sinMusica'));
+      return;
+    }
+    window.open(enlace, '_blank', 'noopener');
+    avisar(Idioma.texto('musicaYoutube'));
+  }
+
+  function prepararAudio(){
+    if (audio) return audio;
+    audio = new Audio(ruta);
+    audio.loop = true;
+    audio.volume = 0.45;
+    audio.preload = 'auto';
+    audio.addEventListener('error', () => {
+      /* El archivo no está en la carpeta "musica": a partir de
+         ahora el botón lleva a YouTube en vez de no hacer nada */
+      fallo = true;
+      pintarEstado(false);
+    });
+    return audio;
+  }
+
+  /* Llevamos nosotros la cuenta de si suena o no.
+     No sirve mirar audio.paused: en cuanto llamas a play() pasa a
+     false, aunque el navegador vaya a rechazar la reproducción medio
+     segundo después. Si el botón se fiara de eso, en esa ventana haría
+     lo contrario de lo que le pides. */
+  let sonando = false;
+
+  function encender(){
+    prepararAudio().play()
+      .then(() => {
+        sonando = true;
+        recordar('si');
+        pintarEstado(true);
+        quitarGestos();
+      })
+      .catch(() => {
+        /* Bloqueado por el navegador: seguimos esperando un gesto */
+        sonando = false;
+        pintarEstado(false);
+      });
+  }
+
+  function apagar(){
+    sonando = false;
+    recordar('no');
+    if (audio) audio.pause();
+    pintarEstado(false);
+    quitarGestos();
+  }
+
+  function alternar(){
+    if (fallo){
+      abrirEnlace();
+      return;
+    }
+    if (sonando) apagar(); else encender();
+  }
+
+  botones.forEach(boton => boton.addEventListener('click', alternar));
+
+
+  /* ---- Arranque automático ------------------------------------ */
+
+  /* Los navegadores solo consideran "gesto del usuario" unos eventos
+     concretos; el scroll no siempre cuenta, por eso van varios. */
+  const GESTOS = ['pointerdown','touchstart','keydown','scroll'];
+
+  /* Ojo con el botón de la nota: su "pointerdown" llega ANTES que su
+     "click". Si lo dejáramos pasar por aquí, la música arrancaría con
+     el pointerdown y el click siguiente la pararía en el acto. Lo que
+     se toque en los botones lo gestiona solo alternar(). */
+  function alPrimerGesto(evento){
+    const destino = evento && evento.target;
+    if (destino && destino.closest && destino.closest('#btn-musica, #btn-musica-pie')) return;
+    if (!sonando && !fallo) encender();
+  }
+
+  function quitarGestos(){
+    GESTOS.forEach(evento => window.removeEventListener(evento, alPrimerGesto));
+  }
+
+  if (!ruta || silenciada()) return;
+
+  GESTOS.forEach(evento =>
+    window.addEventListener(evento, alPrimerGesto, { passive:true })
+  );
+
+  encender();
 })();

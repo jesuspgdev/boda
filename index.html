@@ -3,24 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Miguel &amp; Fatna · 17 de octubre de 2026</title>
-<meta name="description" content="Invitación e itinerario de la boda de Miguel y Fatna. Sábado 17 de octubre de 2026, Almería.">
+<title>Fatna &amp; Miguel · 17 de octubre de 2027</title>
+<meta name="description" content="Invitación de la boda de Fatna y Miguel. 17 de octubre de 2027, Sala Sofía Palacios, La Mojonera, Almería.">
 
-<meta name="theme-color" content="#FAF7F2">
+<meta name="theme-color" content="#FAF7F0">
 <meta name="color-scheme" content="light">
 <meta name="format-detection" content="telephone=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Miguel & Fatna">
+<meta name="apple-mobile-web-app-title" content="Fatna & Miguel">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Miguel & Fatna · Nos casamos">
-<meta property="og:description" content="17 de octubre de 2026 · Almería. Toda la información de la boda aquí.">
+<meta property="og:title" content="Fatna & Miguel · Nos casamos">
+<meta property="og:description" content="17 de octubre de 2027 · Sala Sofía Palacios, La Mojonera, Almería. Toda la información de la boda aquí.">
 <meta property="og:locale" content="es_ES">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&family=Parisienne&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&family=Parisienne&display=swap">
 
 <link rel="stylesheet" href="styles.css">
 <script src="script.js" defer></script>
@@ -31,11 +31,14 @@
 <a class="saltar" href="#contenido">Saltar al contenido</a>
 
 <!-- ================================================================
-     DIBUJOS REUTILIZABLES (ramitas botánicas y silueta del corazón)
+     DIBUJOS REUTILIZABLES
+     (hojas, ramitas, rosas y la corona dorada de la imagen de
+     referencia: dos aros dorados con hojas verdes y puntitos de oro)
      ================================================================ -->
 <svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
   <defs>
     <g id="hoja"><path d="M0 0 C5 -6.5 14 -6.5 19 0 C14 6.5 5 6.5 0 0 Z"/></g>
+
     <g id="ramita">
       <path d="M2 35 C24 34 60 26 100 7" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
       <use href="#hoja" transform="translate(22,32.5) rotate(-58) scale(.72)"/>
@@ -47,9 +50,58 @@
       <use href="#hoja" transform="translate(90,12) rotate(-70) scale(.52)"/>
       <circle cx="101" cy="6" r="2.1" fill="none" stroke="currentColor" stroke-width="1.4" vector-effect="non-scaling-stroke"/>
     </g>
-    <clipPath id="clipCorazon" clipPathUnits="userSpaceOnUse">
-      <path d="M50,91 C50,91 5,59 5,32 C5,16 17,4.5 30.5,4.5 C39.5,4.5 47,10 50,17 C53,10 60.5,4.5 69.5,4.5 C83,4.5 95,16 95,32 C95,59 50,91 50,91 Z"/>
-    </clipPath>
+
+    <!-- Rosa blanca estilizada (para las esquinas florales) -->
+    <g id="rosa">
+      <path d="M0-17 C10-17 17-9.5 17 0 C17 10.5 8.5 17 0 17 C-9.5 17 -17 9.5 -17 0 C-17 -9.5 -9.5 -17 0 -17 Z" fill="#FEFCF6" stroke="#E2D6BC" stroke-width="1"/>
+      <path d="M0-10.5 C6.5-10.5 10.5-5 10.5 .5 C10.5 6.5 5.5 10.5 0 10.5 C-6.5 10.5 -10.5 5.5 -10.5 0 C-10.5 -6 -6 -10.5 0 -10.5 Z" fill="#FAF5E9" stroke="#DFD2B4" stroke-width=".9"/>
+      <path d="M0-5.2 C3.8-5.2 5.2-2.4 5.2 .4 C5.2 3.2 2.8 5.2 0 5.2 C-3.2 5.2 -5.2 2.8 -5.2 0 C-5.2 -2.8 -3.2 -5.2 0 -5.2 Z" fill="#F5EEDC" stroke="#D8CBAB" stroke-width=".8"/>
+      <path d="M-4.8 -.6 C-3 -3.4 2 -3.8 4.4 -1" fill="none" stroke="#D3C5A2" stroke-width=".7" stroke-linecap="round"/>
+      <path d="M-11.5 3.5 C-8 8 1 9.5 7.5 6" fill="none" stroke="#DCCFB0" stroke-width=".8" stroke-linecap="round"/>
+    </g>
+
+    <!-- Grupo floral de esquina: rosas + hojas + puntitos dorados -->
+    <g id="floral-esquina">
+      <g class="floral-hojas">
+        <use href="#hoja" transform="translate(6,44) rotate(-38) scale(1.05)"/>
+        <use href="#hoja" transform="translate(16,58) rotate(12) scale(.85)"/>
+        <use href="#hoja" transform="translate(52,4) rotate(-16) scale(.9)"/>
+        <use href="#hoja" transform="translate(70,10) rotate(28) scale(.7)"/>
+        <use href="#hoja" transform="translate(58,52) rotate(52) scale(.75)"/>
+      </g>
+      <use href="#rosa" transform="translate(34,30)"/>
+      <use href="#rosa" transform="translate(68,42) scale(.6)"/>
+      <g class="floral-puntos">
+        <circle cx="84" cy="22" r="1.7"/>
+        <circle cx="90" cy="30" r="1.1"/>
+        <circle cx="14" cy="14" r="1.4"/>
+        <circle cx="24" cy="8" r="1"/>
+      </g>
+    </g>
+
+    <!-- Corona: dos aros dorados con ramitas de hojas (imagen de referencia) -->
+    <g id="corona">
+      <circle cx="60" cy="60" r="50" fill="none" class="corona-aro-1"/>
+      <circle cx="60" cy="60" r="45.5" fill="none" class="corona-aro-2"/>
+      <g class="corona-hojas">
+        <use href="#hoja" transform="translate(80,10) rotate(14) scale(.8)"/>
+        <use href="#hoja" transform="translate(92,18) rotate(46) scale(.72)"/>
+        <use href="#hoja" transform="translate(101,30) rotate(66) scale(.66)"/>
+        <use href="#hoja" transform="translate(106,44) rotate(84) scale(.56)"/>
+        <use href="#hoja" transform="translate(40,110) rotate(194) scale(.8)"/>
+        <use href="#hoja" transform="translate(28,102) rotate(226) scale(.72)"/>
+        <use href="#hoja" transform="translate(19,90) rotate(246) scale(.66)"/>
+        <use href="#hoja" transform="translate(14,76) rotate(264) scale(.56)"/>
+      </g>
+      <g class="corona-puntos">
+        <circle cx="26" cy="26" r="1.7"/>
+        <circle cx="20" cy="34" r="1.1"/>
+        <circle cx="33" cy="19" r="1"/>
+        <circle cx="94" cy="94" r="1.7"/>
+        <circle cx="100" cy="86" r="1.1"/>
+        <circle cx="87" cy="101" r="1"/>
+      </g>
+    </g>
   </defs>
 </svg>
 
@@ -57,14 +109,14 @@
      BARRA SUPERIOR
      ================================================================ -->
 <header class="barra" id="barra">
-  <a class="monograma" href="#inicio" aria-label="Inicio">M<span>&amp;</span>F</a>
+  <a class="monograma" href="#inicio" aria-label="Inicio">F<span>&amp;</span>M</a>
 
   <nav class="barra-nav" aria-label="Secciones">
-    <a href="#invitacion" data-ar="الدعوة">Invitación</a>
-    <a href="#cuenta-atras" data-ar="العد التنازلي">Cuenta atrás</a>
+    <a href="#celebracion" data-ar="الاحتفال">La celebración</a>
     <a href="#itinerario" data-ar="البرنامج">Itinerario</a>
-    <a href="#ubicacion" data-ar="المكان">Ubicación</a>
+    <a href="#ubicacion" data-ar="المكان">Dónde será</a>
     <a href="#actividades" data-ar="الأنشطة">Actividades</a>
+    <a href="#regalos" data-ar="الهدايا">Regalos</a>
     <a href="#confirmar" data-ar="التأكيد">Confirmar</a>
   </nav>
 
@@ -85,11 +137,11 @@
      ================================================================ -->
 <div class="menu" id="menu" hidden>
   <nav class="menu-nav" aria-label="Menú">
-    <a href="#invitacion" data-ar="الدعوة">Invitación</a>
-    <a href="#cuenta-atras" data-ar="العد التنازلي">Cuenta atrás</a>
+    <a href="#celebracion" data-ar="الاحتفال">La celebración</a>
     <a href="#itinerario" data-ar="البرنامج">Itinerario</a>
-    <a href="#ubicacion" data-ar="المكان">Ubicación</a>
+    <a href="#ubicacion" data-ar="المكان">Dónde será</a>
     <a href="#actividades" data-ar="الأنشطة">Actividades</a>
+    <a href="#regalos" data-ar="الهدايا">Regalos</a>
     <a href="#confirmar" data-ar="تأكيد الحضور">Confirmar asistencia</a>
   </nav>
 
@@ -100,63 +152,50 @@
 
 <!-- ================================================================
      1 · PORTADA
+     -----------------------------------------------------------------
+     La foto de fondo se pone en script.js, en CONFIG.fotos.portada.
+     Mientras no exista el archivo, la portada se ve en papel marfil
+     como hasta ahora (no se rompe nada).
      ================================================================ -->
 <section class="portada" id="inicio">
+  <svg class="floral esquina-a" viewBox="0 0 100 70" aria-hidden="true"><use href="#floral-esquina"/></svg>
+  <svg class="floral esquina-b" viewBox="0 0 100 70" aria-hidden="true"><use href="#floral-esquina"/></svg>
+
   <div class="portada-marco animar">
-
-    <!-- FOTO DE LA PAREJA ------------------------------------------------
-         1) Guarda la foto en esta misma carpeta, por ejemplo  foto.jpg
-         2) Escribe el nombre dentro de href="" en la etiqueta image
-         3) Borra entero el bloque g con id="sin-foto"
-         Usa una foto cuadrada para que no se deforme.
-    ------------------------------------------------------------------- -->
-    <svg class="corazon" viewBox="0 0 100 96" role="img" aria-label="Foto de Miguel y Fatna dentro de un corazón">
-      <g clip-path="url(#clipCorazon)">
-        <image href="" x="0" y="0" width="100" height="96" preserveAspectRatio="xMidYMid slice"/>
-        <g id="sin-foto">
-          <rect class="sin-foto-fondo" x="0" y="0" width="100" height="96"/>
-          <text class="sin-foto-texto" x="50" y="42" text-anchor="middle">VUESTRA</text>
-          <text class="sin-foto-texto" x="50" y="54" text-anchor="middle">FOTO</text>
-        </g>
-      </g>
-      <path class="corazon-borde" d="M50,91 C50,91 5,59 5,32 C5,16 17,4.5 30.5,4.5 C39.5,4.5 47,10 50,17 C53,10 60.5,4.5 69.5,4.5 C83,4.5 95,16 95,32 C95,59 50,91 50,91 Z"/>
-    </svg>
-
-    <div class="ramitas" aria-hidden="true">
-      <svg class="ramita espejo" viewBox="0 0 106 40"><use href="#ramita"/></svg>
-      <svg class="ramita" viewBox="0 0 106 40"><use href="#ramita"/></svg>
+    <div class="corona-monograma" aria-hidden="true">
+      <svg viewBox="0 0 120 120"><use href="#corona"/></svg>
+      <span class="corona-letras">F<i>&amp;</i>M</span>
     </div>
 
-    <p class="portada-saludo" data-ar="سنتزوّج!">¡Nos casamos!</p>
-    <p class="portada-sub" data-ar="ويسعدنا أن ندعوك إلى حفل زفافنا">Y nos gustaría invitarte a nuestra boda</p>
-
     <h1 class="portada-nombres">
-      <span data-ar="ميغيل">Miguel</span>
-      <span class="amp" aria-hidden="true" data-ar="و">&amp;</span>
       <span data-ar="فاطنة">Fatna</span>
+      <span class="amp" aria-hidden="true" data-ar="و">&amp;</span>
+      <span data-ar="ميغيل">Miguel</span>
     </h1>
 
-    <p class="portada-fecha">
-      <span data-ar="السبت">Sábado</span>
-      <i aria-hidden="true"></i>
-      <span data-ar="١٧ أكتوبر">17 de octubre</span>
-      <i aria-hidden="true"></i>
-      <span data-ar="٢٠٢٦">2026</span>
-    </p>
+    <p class="portada-fecha" data-ar="١٧ أكتوبر ٢٠٢٧">17 de octubre de 2027</p>
 
-    <p class="portada-ciudad" data-ar="ألميريا · إسبانيا">Almería · España</p>
+    <div class="texto portada-texto">
+      <p data-ar="كل قصة حب فريدة،<br>وقصتنا لن تكتمل<br>بدون أقرب الناس إلى قلبنا.">Cada historia de amor es única,<br>y la nuestra no estaría completa<br>sin las personas que más queremos.</p>
+      <p data-ar="سيسعدنا كثيرًا أن ترافقنا<br>في هذا اليوم المميّز.">Nos haría muchísima ilusión que nos<br>acompañaras en este día tan especial.</p>
+    </div>
+
+    <a class="boton solido enlace-formulario" href="#confirmar">
+      <span data-ar="أكّد حضورك">Confirmar asistencia</span>
+    </a>
+
+    <svg class="corazoncito" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5S4 15 4 9.6C4 6.8 6.2 4.7 8.7 4.7c1.5 0 2.7.9 3.3 2.1.6-1.2 1.8-2.1 3.3-2.1 2.5 0 4.7 2.1 4.7 4.9 0 5.4-8 10.9-8 10.9Z" fill="currentColor"/></svg>
   </div>
 
   <div class="bajar" aria-hidden="true"><span></span></div>
 </section>
 
 <!-- ================================================================
-     2 · INVITACIÓN
+     2 · LA CELEBRACIÓN (fecha + lugar + cuenta atrás en vivo)
      ================================================================ -->
-<section id="invitacion">
-  <div class="contenedor estrecho centro">
-    <p class="antetitulo animar" data-ar="الدعوة">La invitación</p>
-    <h2 class="titulo animar" data-ar="نتشرّف بدعوتك">Nos encantaría contar contigo</h2>
+<section id="celebracion" class="crema">
+  <div class="contenedor centro">
+    <h2 class="titulo animar" data-ar="الاحتفال">La celebración</h2>
 
     <div class="filete animar" aria-hidden="true">
       <span></span>
@@ -164,85 +203,65 @@
       <span></span>
     </div>
 
-    <div class="texto animar retraso-1">
-      <p data-ar="بعد سنوات من مشاركة كل شيء، قرّرنا أن نقول &quot;نعم&quot;. وما من طريقة أجمل للاحتفال بذلك من أن نكون محاطين بمن نحبّهم.">
-        Después de mucho tiempo compartiéndolo todo, hemos decidido decir <em>sí</em>.
-        Y no se nos ocurre mejor forma de celebrarlo que rodeados de la gente que queremos.
-      </p>
-      <p data-ar="لذلك نودّ دعوتك إلى حفل زفافنا يوم <strong>السبت ١٧ أكتوبر ٢٠٢٦</strong>، في <strong>النادي الفروسي والمركّب الرياضي بألميريا</strong>.">
-        Por eso queremos invitarte a nuestra boda el
-        <strong>sábado 17 de octubre de 2026</strong>, en el
-        <strong>Club Hípico y Polideportivo de Almería</strong>.
-      </p>
-      <p data-ar="سيكون يومًا مليئًا بالطعام والموسيقى والرقص والضحك. نأمل ألّا تفوّته.">
-        Será un día largo, con comida, música, baile y muchas ganas de pasarlo bien.
-        Esperamos que no te lo pierdas.
-      </p>
-    </div>
+    <div class="celebracion-grid">
+      <div class="celebracion-datos animar retraso-1">
+        <p class="dato-linea">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3"/>
+          </svg>
+          <span data-ar="١٧ أكتوبر ٢٠٢٧">17 de octubre de 2027</span>
+        </p>
+        <p class="dato-linea">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/>
+          </svg>
+          <span data-ar="قاعة صوفيا بالاثيوس">Sala Sofía Palacios</span>
+        </p>
 
-    <ul class="datos animar retraso-2">
-      <li>
-        <span class="datos-etq" data-ar="التاريخ">Fecha</span>
-        <span class="datos-val" data-ar="السبت ١٧ أكتوبر">Sábado 17 de octubre</span>
-        <span class="datos-pie" data-ar="٢٠٢٦">de 2026</span>
-      </li>
-      <li>
-        <span class="datos-etq" data-ar="مراسم الزفاف">Ceremonia</span>
-        <!-- EDITAR HORA: cambia el texto de abajo por la hora real, por ejemplo 17:30 h -->
-        <span class="datos-val" data-ar="الساعة تُحدَّد لاحقًا">Hora por confirmar</span>
-        <span class="datos-pie" data-ar="سنُعلمك هنا">Te avisaremos aquí mismo</span>
-      </li>
-      <li>
-        <span class="datos-etq" data-ar="المكان">Lugar</span>
-        <span class="datos-val" data-ar="النادي الفروسي">Club Hípico</span>
-        <span class="datos-pie" data-ar="والمركّب الرياضي بألميريا">y Polideportivo de Almería</span>
-      </li>
-    </ul>
+        <div class="acciones-secundarias">
+          <a class="boton" id="btn-mapa" href="https://maps.app.goo.gl/hFBxsLLNG9jkrzfWA?g_st=ig" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/>
+            </svg>
+            <span data-ar="كيفية الوصول">Cómo llegar</span>
+          </a>
+          <button type="button" class="boton fino" id="btn-calendario">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3"/>
+            </svg>
+            <span data-ar="أضِف إلى التقويم">Añadir al calendario</span>
+          </button>
+          <button type="button" class="boton fino" id="btn-compartir" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3.5v12M12 3.5 8 7.5M12 3.5l4 4M5 13v6.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V13"/>
+            </svg>
+            <span data-ar="شارك الدعوة">Compartir invitación</span>
+          </button>
+        </div>
+      </div>
 
-    <div class="animar retraso-2 acciones-secundarias">
-      <button type="button" class="boton fino" id="btn-calendario">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3"/>
-        </svg>
-        <span data-ar="أضِف إلى التقويم">Añadir al calendario</span>
-      </button>
+      <div class="celebracion-reloj animar retraso-2">
+        <p class="antetitulo" data-ar="باقي">Faltan</p>
 
-      <button type="button" class="boton fino" id="btn-compartir" hidden>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 3.5v12M12 3.5 8 7.5M12 3.5l4 4M5 13v6.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V13"/>
-        </svg>
-        <span data-ar="شارك الدعوة">Compartir invitación</span>
-      </button>
+        <div class="reloj" id="reloj">
+          <div class="reloj-caja"><b id="cd-dias">--</b><span data-ar="أيام">Días</span></div>
+          <div class="reloj-caja"><b id="cd-horas">--</b><span data-ar="ساعات">Horas</span></div>
+          <div class="reloj-caja"><b id="cd-min">--</b><span data-ar="دقائق">Minutos</span></div>
+          <div class="reloj-caja"><b id="cd-seg">--</b><span data-ar="ثوانٍ">Segundos</span></div>
+          <svg class="reloj-corazon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5S4 15 4 9.6C4 6.8 6.2 4.7 8.7 4.7c1.5 0 2.7.9 3.3 2.1.6-1.2 1.8-2.1 3.3-2.1 2.5 0 4.7 2.1 4.7 4.9 0 5.4-8 10.9-8 10.9Z" fill="currentColor"/></svg>
+        </div>
+
+        <p class="reloj-aviso" id="cd-aviso" hidden></p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ================================================================
-     3 · CUENTA ATRÁS
-     ================================================================ -->
-<section id="cuenta-atras" class="crema">
-  <div class="contenedor centro">
-    <p class="antetitulo animar" data-ar="العد التنازلي">Cuenta atrás</p>
-    <h2 class="titulo animar" data-ar="كم بقي من الوقت؟">Lo que queda para el gran día</h2>
-    <p class="entradilla animar" data-ar="١٧ أكتوبر ٢٠٢٦ · بتوقيت إسبانيا">17 de octubre de 2026 · hora peninsular española</p>
-
-    <div class="reloj animar retraso-1" id="reloj">
-      <div class="reloj-caja"><b id="cd-dias">--</b><span data-ar="أيام">Días</span></div>
-      <div class="reloj-caja"><b id="cd-horas">--</b><span data-ar="ساعات">Horas</span></div>
-      <div class="reloj-caja"><b id="cd-min">--</b><span data-ar="دقائق">Min.</span></div>
-      <div class="reloj-caja"><b id="cd-seg">--</b><span data-ar="ثوانٍ">Seg.</span></div>
-    </div>
-
-    <p class="reloj-aviso animar retraso-2" id="cd-aviso" hidden></p>
-  </div>
-</section>
-
-<!-- ================================================================
-     4 · ITINERARIO
+     3 · ITINERARIO
      ================================================================ -->
 <section id="itinerario">
   <div class="contenedor centro">
-    <p class="antetitulo animar" data-ar="البرنامج">Itinerario</p>
     <h2 class="titulo animar" data-ar="برنامج اليوم">El programa del día</h2>
     <p class="entradilla animar" data-ar="سنُحدّث المواعيد بمجرد تأكيدها.">Iremos ajustando las horas conforme se confirmen.</p>
 
@@ -265,14 +284,14 @@
         <p class="lt-hora">--:--</p>
         <div class="lt-cuerpo">
           <h3><span data-ar="مراسم الزفاف">Ceremonia</span><em class="etiqueta" data-ar="قيد التأكيد">Por confirmar</em></h3>
-          <p data-ar="اللحظة الأهم. نرجو الحضور قبلها بقليل.">El momento importante. Te pedimos estar unos minutos antes para que empiece a su hora.</p>
+          <p data-ar="اللحظة الأهم. نرجو الحضور قبلها بقليل حتى تبدأ في وقتها.">El momento importante. Te pedimos estar unos minutos antes para que empiece a su hora.</p>
         </div>
       </li>
       <li class="animar">
         <p class="lt-hora">--:--</p>
         <div class="lt-cuerpo">
           <h3><span data-ar="كوكتيل">Cóctel</span><em class="etiqueta" data-ar="قيد التأكيد">Por confirmar</em></h3>
-          <p data-ar="أطباق خفيفة ومشروبات وموسيقى في الهواء الطلق، ووقت للصور.">Aperitivo, bebida y música al aire libre. Momento perfecto para las fotos y los saludos.</p>
+          <p data-ar="أطباق خفيفة ومشروبات وموسيقى في الهواء الطلق، ووقت للصور والتحية.">Aperitivo, bebida y música al aire libre. Momento perfecto para las fotos y los saludos.</p>
         </div>
       </li>
       <li class="animar">
@@ -286,7 +305,7 @@
         <p class="lt-hora">--:--</p>
         <div class="lt-cuerpo">
           <h3><span data-ar="الحفلة والمشروبات">Fiesta y barra libre</span><em class="etiqueta" data-ar="قيد التأكيد">Por confirmar</em></h3>
-          <p data-ar="نفتح حلبة الرقص. أحضر حذاءً مريحًا — ستحتاجه.">Se abre la pista y no la cerramos pronto. Trae calzado cómodo, lo vas a necesitar.</p>
+          <p data-ar="نفتح حلبة الرقص ولن نغلقها مبكرًا. أحضر حذاءً مريحًا، ستحتاجه.">Se abre la pista y no la cerramos pronto. Trae calzado cómodo, lo vas a necesitar.</p>
         </div>
       </li>
     </ol>
@@ -294,24 +313,24 @@
 </section>
 
 <!-- ================================================================
-     5 · UBICACIÓN
+     4 · DÓNDE SERÁ
      ================================================================ -->
 <section id="ubicacion" class="crema">
   <div class="contenedor centro">
-    <p class="antetitulo animar" data-ar="المكان">Ubicación</p>
-    <h2 class="titulo animar" data-ar="أين سنحتفل">Dónde lo celebramos</h2>
+    <h2 class="titulo animar" data-ar="أين سيكون؟">¿Dónde será?</h2>
 
     <div class="lugar animar retraso-1">
-      <p class="lugar-nombre" data-ar="النادي الفروسي والمركّب الرياضي بألميريا">Club Hípico y Polideportivo de Almería</p>
-      <p class="lugar-dir" data-ar="طريق فياطور نحو الألكيان، كم ٤٫٢ · ٠٤١٢٠ الألكيان، ألميريا">Carretera Viator al Alquián, km 4,2<br>04120 El Alquián, Almería</p>
+      <p class="lugar-nombre" data-ar="قاعة صوفيا بالاثيوس">Sala Sofía Palacios</p>
+      <p class="lugar-dir" data-ar="طريق لا موخونيرا، ٥٠<br>٠٤٧٤٥ لا موخونيرا، ألميريا">Camino de la Mojonera, 50<br>04745 La Mojonera, Almería</p>
+      <p class="lugar-desc" data-ar="مكان مميّز سنحتفل فيه بهذا اليوم<br>محاطين بأهلنا وأصدقائنا.">Un lugar único donde celebraremos este día tan especial<br>rodeados de nuestros familiares y amigos.</p>
     </div>
 
     <!-- El mapa no se descarga hasta que se acerca a la pantalla, para no gastar
          datos móviles de quien solo abre la invitación a mirar la fecha. -->
     <div class="mapa animar retraso-1" id="mapa">
       <iframe
-        title="Mapa del Club Hípico y Polideportivo de Almería"
-        data-src="https://www.google.com/maps?q=Club%20H%C3%ADpico%20y%20Polideportivo%20de%20Almer%C3%ADa&amp;hl=es&amp;z=15&amp;output=embed"
+        title="Mapa de la Sala Sofía Palacios"
+        data-src="https://www.google.com/maps?q=Sala%20Sof%C3%ADa%20Palacios%2C%20Camino%20de%20la%20Mojonera%2050%2C%2004745%20La%20Mojonera%2C%20Almer%C3%ADa&amp;hl=es&amp;z=16&amp;output=embed"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
         allowfullscreen></iframe>
@@ -319,13 +338,32 @@
     </div>
 
     <div class="animar retraso-2 acciones-secundarias">
-      <a class="boton" id="btn-mapa" href="https://maps.app.goo.gl/RqoNce16bi8eU23t7" target="_blank" rel="noopener noreferrer">
+      <a class="boton" href="https://maps.app.goo.gl/hFBxsLLNG9jkrzfWA?g_st=ig" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/>
         </svg>
-        <span data-ar="كيفية الوصول">Cómo llegar</span>
+        <span data-ar="افتح في خرائط جوجل">Abrir en Google Maps</span>
       </a>
     </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     5 · FOTO CON FRASE (efecto parallax con capa oscura)
+     -----------------------------------------------------------------
+     La foto se pone en script.js, en CONFIG.fotos.parallax (la del
+     arco con las vistas al valle). Mientras no exista el archivo, la
+     sección se ve en crema con el texto en tinta, sin romperse.
+     ================================================================ -->
+<section class="parallax" id="parallax">
+  <div class="parallax-velo"></div>
+  <div class="contenedor centro parallax-contenido">
+    <div class="ramitas animar" aria-hidden="true">
+      <svg class="ramita espejo" viewBox="0 0 106 40"><use href="#ramita"/></svg>
+      <svg class="ramita" viewBox="0 0 106 40"><use href="#ramita"/></svg>
+    </div>
+    <p class="parallax-frase animar retraso-1" data-ar="سيسعدنا كثيرًا<br>أن نتقاسم معك هذا اليوم.">Nos hará muchísima ilusión<br>compartir este día contigo.</p>
+    <p class="parallax-firma animar retraso-2" data-ar="فاطنة وميغيل · ١٧ · ١٠ · ٢٠٢٧">Fatna &amp; Miguel · 17 · 10 · 2027</p>
   </div>
 </section>
 
@@ -334,7 +372,6 @@
      ================================================================ -->
 <section id="actividades">
   <div class="contenedor centro">
-    <p class="antetitulo animar" data-ar="الأنشطة">Actividades</p>
     <h2 class="titulo animar" data-ar="ما ينتظرك في ذلك اليوم">Lo que te espera ese día</h2>
 
     <ul class="tarjetas">
@@ -345,7 +382,7 @@
           </svg>
         </span>
         <h3 data-ar="ركن التصوير">Photocall</h3>
-        <p data-ar="ركن مُجهَّز للصور، بمفردك أو مع الجميع. لا تخجل.">Un rincón preparado para las fotos, solo o en grupo. No seas tímido, que luego se agradecen.</p>
+        <p data-ar="ركن مُجهَّز للصور، بمفردك أو مع الجميع. لا تخجل، ستشكرنا لاحقًا.">Un rincón preparado para las fotos, solo o en grupo. No seas tímido, que luego se agradecen.</p>
       </li>
 
       <li class="tarjeta animar retraso-1">
@@ -355,7 +392,27 @@
           </svg>
         </span>
         <h3 data-ar="دفتر التوقيعات">Libro de firmas</h3>
-        <p data-ar="اترك لنا كلمة أو نصيحة أو رسمًا. سنقرأه كثيرًا لاحقًا.">Déjanos unas palabras, un consejo o un dibujo. Lo leeremos muchas veces, prometido.</p>
+        <p data-ar="اترك لنا كلمة أو نصيحة أو رسمًا. سنقرأه مرارًا، نعِدك بذلك.">Déjanos unas palabras, un consejo o un dibujo. Lo leeremos muchas veces, prometido.</p>
+      </li>
+
+      <li class="tarjeta animar retraso-2">
+        <span class="tarjeta-icono" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3.5c3.6 0 6 2.6 6 6 0 4.4-3.4 7-6 7s-6-2.6-6-7c0-3.4 2.4-6 6-6Z"/><path d="M10.5 16.2 9 21l3-1.6L15 21l-1.5-4.8"/><path d="M9.5 6.8c.8-.6 1.6-.9 2.5-.9"/>
+          </svg>
+        </span>
+        <h3><span data-ar="ترفيه الأطفال">Animación infantil</span><em class="etiqueta" data-ar="قيد التأكيد">Por confirmar</em></h3>
+        <p data-ar="نُعِدّ ترفيهًا للصغار: نطاطة وألعاب وتنشيط. سنؤكّد التفاصيل هنا.">Estamos preparando entretenimiento para los peques: hinchable, juegos y animación. Confirmaremos los detalles aquí.</p>
+      </li>
+
+      <li class="tarjeta animar retraso-1">
+        <span class="tarjeta-icono" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v3M12 17.5v3M3.5 12h3M17.5 12h3"/><circle cx="12" cy="12" r="3.2"/>
+          </svg>
+        </span>
+        <h3><span data-ar="كابينة تصوير ٣٦٠°">Photomatón 360°</span><em class="etiqueta" data-ar="قيد التأكيد">Por confirmar</em></h3>
+        <p data-ar="منصّة دوّارة تأخذ منها ذكرى بالفيديو. ما زلنا نرى إن كان بإمكاننا توفيرها.">Una plataforma giratoria para llevarte un recuerdo en vídeo. Estamos viendo si podemos contar con él.</p>
       </li>
 
       <li class="tarjeta animar retraso-2">
@@ -365,11 +422,11 @@
           </svg>
         </span>
         <h3><span data-ar="حافلة العودة">Autobús de vuelta</span><em class="etiqueta" data-ar="قيد التأكيد">Por confirmar</em></h3>
-        <p data-ar="ندرس توفير حافلة للعودة إلى المدينة. أخبرنا في استمارة التأكيد إن كنت ستحتاجها.">Estamos organizando un autobús de vuelta a la ciudad. Dinos en el formulario si lo necesitas.</p>
+        <p data-ar="ندرس توفير حافلة للعودة. أخبرنا في الاستمارة إن كنت ستحتاجها.">Estamos organizando un autobús de vuelta. Cuéntanos en el formulario si lo necesitarías.</p>
       </li>
     </ul>
 
-    <p class="aviso animar retraso-2" data-ar="<strong>ملاحظة:</strong> سنُضيف المزيد من الأنشطة هنا نفسه كلما اقترب الموعد. احتفظ بهذه الصفحة وعُد إليها من حين لآخر.">
+    <p class="aviso animar retraso-2" data-ar="<strong>ملاحظة:</strong> سنؤكّد المزيد من الأنشطة هنا نفسه كلما اقترب الموعد. احتفظ بهذه الصفحة وعُد إليها من حين لآخر.">
       <strong>Ojo:</strong> iremos confirmando más actividades aquí mismo conforme se acerque la fecha.
       Guarda esta página y échale un vistazo de vez en cuando.
     </p>
@@ -377,9 +434,58 @@
 </section>
 
 <!-- ================================================================
-     7 · CONFIRMAR ASISTENCIA
+     7 · MESA DE REGALOS
      ================================================================ -->
-<section id="confirmar" class="crema">
+<section id="regalos" class="crema">
+  <div class="contenedor estrecho centro">
+    <span class="tarjeta-icono regalos-icono animar" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="9.5" width="16" height="11" rx="1"/><path d="M3 6.5h18v3H3zM12 6.5v14M12 6.5c-1.8 0-4.5-.7-4.5-2.6C7.5 2.6 9 2 10 2.4c1.3.5 2 2.3 2 4.1 0-1.8.7-3.6 2-4.1 1-.4 2.5.2 2.5 1.5 0 1.9-2.7 2.6-4.5 2.6Z"/>
+      </svg>
+    </span>
+
+    <h2 class="titulo animar" data-ar="قائمة الهدايا">Mesa de regalos</h2>
+
+    <div class="filete animar" aria-hidden="true">
+      <span></span>
+      <svg viewBox="0 0 12 12"><path d="M6 .8 11.2 6 6 11.2.8 6Z" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+      <span></span>
+    </div>
+
+    <div class="texto animar retraso-1">
+      <p data-ar="حضورك هو أجمل هدية، ولا نحتاج حقًا إلى شيء آخر.">Tu presencia es nuestro mayor regalo, y de verdad que no hace falta nada más.</p>
+      <p data-ar="لكن إن أردت أن تهدينا شيئًا، سيسعدنا كثيرًا ظرف يساعدنا في شهر العسل. ستكون أول مغامرة كبيرة لنا كزوجين، ومعرفة أنك ساهمت فيها ستجعلنا نتذكّرك في كل ركن من الرحلة.">Pero si deseas obsequiarnos algo, nos haría muchísima ilusión un sobre
+      para ayudarnos con nuestro viaje de novios. Será nuestra primera gran
+      aventura como casados, y saber que has puesto tu granito nos hará
+      recordarte en cada rincón del viaje.</p>
+      <p class="regalos-gracias" data-ar="شكرًا من القلب. ♥">Gracias de corazón. ♥</p>
+    </div>
+
+    <!-- EDITAR: cuando se decida cómo se recogen los sobres (número de
+         cuenta, o sobre físico el día de la boda), sustituid el texto
+         de este bloque y borrad la etiqueta "Por confirmar". -->
+    <div class="aviso animar retraso-2" data-ar="<em class=&quot;etiqueta&quot;>قيد التأكيد</em><br>سننشر هنا التفاصيل قريبًا: رقم الحساب أو تسليم الظرف يوم الزفاف نفسه.">
+      <em class="etiqueta">Por confirmar</em><br>
+      Muy pronto publicaremos aquí los detalles: número de cuenta
+      o entrega del sobre el mismo día de la boda.
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     8 · BANDA DE FOTO (respiro entre los regalos y la confirmación)
+     -----------------------------------------------------------------
+     La foto se pone en script.js, en CONFIG.fotos.banda (el plano
+     abierto de la puerta). Si el archivo no está, la banda entera
+     desaparece y no queda ningún hueco raro.
+     ================================================================ -->
+<section class="banda-foto" id="banda-foto" role="img"
+         aria-label="Fatna y Miguel a la puerta, el día de la boda civil" hidden></section>
+
+<!-- ================================================================
+     9 · CONFIRMAR ASISTENCIA
+     ================================================================ -->
+<section id="confirmar">
   <div class="contenedor estrecho">
     <div class="rsvp animar">
       <div class="ramitas" aria-hidden="true">
@@ -388,50 +494,85 @@
       </div>
 
       <p class="antetitulo" data-ar="تأكيد الحضور">Confirmación de asistencia</p>
-      <h2 class="titulo" data-ar="أكّد حضورك قبل">Confirma tu asistencia antes del</h2>
-      <p class="rsvp-fecha" data-ar="١٧ غشت ٢٠٢٦">17 de agosto de 2026</p>
-      <p class="entradilla" data-ar="يساعدنا ذلك كثيرًا في التنظيم. شكرًا لك!">Nos ayuda muchísimo para organizarlo todo. ¡Gracias!</p>
+      <h2 class="titulo" data-ar="أكّد حضورك">Confirma tu asistencia</h2>
+      <!-- EDITAR: cuando se decida la fecha límite, sustituid esta línea
+           por la fecha real (p. ej. "antes del 17 de agosto de 2027") -->
+      <p class="rsvp-fecha"><em class="etiqueta" data-ar="الموعد النهائي قيد التأكيد">Fecha límite por confirmar</em></p>
+      <p class="entradilla" data-ar="كلما أكّدت مبكرًا، ساعدتنا أكثر في التنظيم. شكرًا لك!">Cuanto antes confirmes, más nos ayudas a organizarlo todo. ¡Gracias!</p>
 
       <ul class="rsvp-lista">
-        <li data-ar="اسمك">Tu nombre</li>
-        <li data-ar="عدد المرافقين">Número de acompañantes</li>
-        <li data-ar="الحساسيات أو الأنظمة الغذائية الخاصة">Alergias o dietas especiales</li>
-        <li data-ar="هل تحتاج إلى الحافلة؟">Si necesitas el autobús</li>
+        <li data-ar="اسمك وهل ستأتي بمرافق">Tu nombre y si vienes acompañado/a</li>
+        <li data-ar="هل سيحضر أطفال">Si asistirán niños</li>
+        <li data-ar="الحساسيات أو الأنظمة الغذائية الخاصة">Alergias, intolerancias o dietas especiales</li>
+        <li data-ar="ما تفضّله: طعام مغربي أو قائمة تقليدية">Qué prefieres: comida marroquí o menú tradicional</li>
+        <li data-ar="الأغنية التي لا يمكن أن تغيب عن الحفلة">La canción que no puede faltar en la pista</li>
       </ul>
 
       <!-- El enlace de este botón se pone en script.js, en CONFIG.formulario -->
-      <a class="boton solido grande" id="btn-rsvp" href="#" target="_blank" rel="noopener noreferrer">
+      <a class="boton solido grande enlace-formulario" id="btn-rsvp" href="#confirmar">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M20 6 9 17l-5-5"/>
         </svg>
-        <span data-ar="أؤكّد حضوري">Confirmar asistencia</span>
+        <span data-ar="أكّد حضورك">Confirmar asistencia</span>
       </a>
 
-      <p class="rsvp-nota" data-ar="إن كانت لديك أي مشكلة مع الاستمارة، اتصل بنا مباشرة.">
-        Si tienes cualquier problema con el formulario, escríbenos directamente.
+      <p class="rsvp-nota" data-ar="تُفتح الاستمارة في نافذة جديدة. إن واجهت أي مشكلة، اتصل بنا مباشرة.">
+        El formulario se abre en una pestaña nueva.
+        Si tienes cualquier problema, escríbenos directamente.
       </p>
     </div>
   </div>
 </section>
 
 <!-- ================================================================
-     8 · CIERRE
+     10 · CIERRE (foto del ramo dentro de la corona dorada)
+     -----------------------------------------------------------------
+     La foto se pone en script.js, en CONFIG.fotos.cierre.
      ================================================================ -->
-<section class="cierre centro">
+<section class="cierre centro crema">
   <div class="contenedor estrecho">
-    <div class="ramitas animar" aria-hidden="true">
-      <svg class="ramita espejo" viewBox="0 0 106 40"><use href="#ramita"/></svg>
-      <svg class="ramita" viewBox="0 0 106 40"><use href="#ramita"/></svg>
+    <div class="corona-foto animar" aria-hidden="true">
+      <img id="foto-cierre" alt="" hidden>
+      <svg viewBox="0 0 120 120"><use href="#corona"/></svg>
     </div>
-    <p class="cierre-frase animar retraso-1" data-ar="سيسعدنا كثيرًا أن نتقاسم معك هذا اليوم.">Nos hará muchísima ilusión compartir este día contigo.</p>
+    <p class="cierre-frase animar retraso-1" data-ar="شكرًا لأنك جزء<br>من قصتنا.">Gracias por formar parte<br>de nuestra historia.</p>
   </div>
 </section>
 
 </main>
 
 <footer>
-  <p class="pie-nombres"><span data-ar="ميغيل">Miguel</span> <span data-ar="و">&amp;</span> <span data-ar="فاطنة">Fatna</span></p>
-  <p data-ar="١٧ أكتوبر ٢٠٢٦ · ألميريا">17 · 10 · 2026 &nbsp;·&nbsp; Almería</p>
+  <nav class="pie-enlaces" aria-label="Accesos rápidos">
+    <a href="#celebracion">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="13" r="7.5"/><path d="M12 9.5V13l2.5 2M9.5 3h5"/>
+      </svg>
+      <span data-ar="العد التنازلي">Cuenta atrás</span>
+    </a>
+    <a href="#ubicacion">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/>
+      </svg>
+      <span data-ar="المكان">Ubicación</span>
+    </a>
+    <a href="#confirmar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M20 6 9 17l-5-5"/>
+      </svg>
+      <span data-ar="التأكيد">Confirmación</span>
+    </a>
+    <button type="button" class="pie-musica" id="btn-musica-pie">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M9 18V6l10-2v11.5"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="15.5" r="2.5"/>
+      </svg>
+      <span data-ar="الموسيقى">Música</span>
+    </button>
+  </nav>
+
+  <div class="pie-banda">
+    <p class="pie-nombres"><span data-ar="فاطنة">Fatna</span> <span data-ar="و">&amp;</span> <span data-ar="ميغيل">Miguel</span></p>
+    <p class="pie-fecha" data-ar="١٧ أكتوبر ٢٠٢٧ · ألميريا">17 de octubre de 2027 · Almería</p>
+  </div>
 </footer>
 
 <!-- ================================================================
@@ -448,9 +589,18 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M20 6 9 17l-5-5"/>
     </svg>
-    <span data-ar="أكّد حضورك">Confirmar</span>
+    <span data-ar="أكّد">Confirmar</span>
   </a>
 </div>
+
+<!-- Botón flotante de la música: empieza siempre en silencio y solo
+     suena si el invitado lo pulsa (los navegadores bloquean el
+     autoplay con sonido, y además así no asustamos a nadie). -->
+<button type="button" class="boton-musica" id="btn-musica" hidden aria-pressed="false" aria-label="Activar la música">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M9 18V6l10-2v11.5"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="15.5" r="2.5"/>
+  </svg>
+</button>
 
 <!-- Mensajes breves (copiado de enlace, calendario descargado, etc.) -->
 <p class="mensaje" id="mensaje" role="status" aria-live="polite"></p>

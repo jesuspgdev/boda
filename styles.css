@@ -1,5 +1,5 @@
 /* =================================================================
-   BODA MIGUEL & FATNA · Hoja de estilos
+   BODA FATNA & MIGUEL · Hoja de estilos
    -----------------------------------------------------------------
    Escrita pensando primero en el móvil: lo que hay fuera de las
    @media es la versión de teléfono. Las @media (min-width: ...)
@@ -8,34 +8,41 @@
    Índice
      1. Variables
      2. Base y accesibilidad
-     3. Piezas reutilizables (botones, filetes, ramitas, títulos)
+     3. Piezas reutilizables (botones, filetes, ramitas, corona)
      4. Barra superior y menú
      5. Portada
-     6. Invitación
-     7. Cuenta atrás
-     8. Itinerario
-     9. Ubicación
+     6. La celebración (datos + cuenta atrás)
+     7. Itinerario
+     8. Dónde será
+     9. Sección parallax (foto con capa oscura)
     10. Actividades
-    11. Confirmar asistencia
-    12. Cierre y pie
-    13. Barra inferior y mensajes
-    14. Animaciones al hacer scroll
-    15. Versión en árabe
+    11. Mesa de regalos
+    12. Confirmar asistencia
+    13. Cierre, pie y banda verde
+    14. Barra inferior, botón de música y mensajes
+    15. Animaciones al hacer scroll
    ================================================================= */
 
 
 /* ============ 1. VARIABLES ============ */
 :root{
-  /* Paleta (la misma de la invitación en papel) */
-  --marfil:#FAF7F2;
-  --crema:#F1ECE4;
-  --dorado:#A98C55;
-  --dorado-suave:#C6B48A;
-  --tinta:#5E574C;
-  --texto-2:#6E6A62;
-  --linea:rgba(169,140,85,.3);
+  /* Paleta tomada de la imagen de referencia de la novia:
+     marfil de fondo, dorado suave y verde hoja apagado */
+  --marfil:#FAF7F0;
+  --crema:#F2EDE1;
+  --dorado:#A8894B;
+  --dorado-suave:#C9B98C;
+  --verde:#77815F;          /* banda del pie y acentos */
+  --verde-hoja:#6C7B52;     /* hojas de las coronas y ramitas */
+  --verde-oscuro:#4C573D;
+  --tinta:#57503F;
+  --texto-2:#6E6A5E;
+  --linea:rgba(168,137,75,.3);
 
-  /* Tipografías */
+  /* Capa oscura de las secciones con foto de fondo */
+  --velo:rgba(20,22,16,.45);
+
+  /* Tipografías (las ya elegidas: no cambiar) */
   --serif:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
   --sans:'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --script:'Parisienne', 'Cormorant Garamond', cursive;
@@ -68,8 +75,8 @@ body{
   margin:0;
   background:var(--marfil);
   background-image:
-    radial-gradient(circle at 10% 4%, rgba(198,180,138,.16), transparent 46%),
-    radial-gradient(circle at 90% 96%, rgba(198,180,138,.14), transparent 48%);
+    radial-gradient(circle at 10% 4%, rgba(201,185,140,.16), transparent 46%),
+    radial-gradient(circle at 90% 96%, rgba(201,185,140,.14), transparent 48%);
   color:var(--tinta);
   font-family:var(--sans);
   font-weight:300;
@@ -79,7 +86,7 @@ body{
   overflow-wrap:break-word;
   /* Deja hueco para la barra de acciones inferior del móvil */
   padding-bottom:calc(var(--alto-barra-inferior) + var(--seguro-abajo));
-  -webkit-tap-highlight-color:rgba(169,140,85,.14);
+  -webkit-tap-highlight-color:rgba(168,137,75,.14);
 }
 
 /* El fondo fijo se desactiva en móvil: en iOS provoca tirones al hacer scroll */
@@ -102,13 +109,23 @@ em{font-style:italic}
 
 :focus-visible{outline:2px solid var(--dorado);outline-offset:3px;border-radius:2px}
 
-/* Enlace para saltar el menú con teclado */
+/* Enlace para saltar el menú con teclado.
+   Se esconde recortándolo a 1px, NO sacándolo con un left negativo:
+   con la página en árabe (de derecha a izquierda) ese lado es el
+   contrario y el enlace generaba 9999px de scroll lateral vacío. */
 .saltar{
-  position:absolute;inset-inline-start:-9999px;top:0;z-index:200;
-  background:var(--dorado);color:#fff;padding:12px 18px;
+  position:absolute;inset-inline-start:0;top:0;
+  width:1px;height:1px;
+  padding:0;border:0;overflow:hidden;
+  clip-path:inset(50%);white-space:nowrap;
+}
+.saltar:focus{
+  position:fixed;inset-inline-start:8px;top:8px;z-index:200;
+  width:auto;height:auto;margin:0;padding:12px 18px;
+  clip-path:none;overflow:visible;
+  background:var(--dorado);color:#fff;
   font-size:13px;letter-spacing:.1em;text-decoration:none;
 }
-.saltar:focus{inset-inline-start:8px;top:8px}
 
 /* Estructura de secciones */
 section{padding:64px var(--margen);position:relative}
@@ -126,7 +143,9 @@ section{padding:64px var(--margen);position:relative}
   color:var(--dorado);font-weight:500;margin:0 0 12px;
 }
 .titulo{
-  font-size:1.95rem;letter-spacing:.01em;color:var(--tinta);margin:0 0 10px;
+  font-family:var(--serif);
+  font-size:1.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dorado);margin:0 0 10px;
   text-wrap:balance;
 }
 .entradilla{color:var(--texto-2);font-size:15px}
@@ -141,11 +160,30 @@ section{padding:64px var(--margen);position:relative}
 .filete span{flex:1;height:1px;background:linear-gradient(to right,transparent,var(--dorado-suave),transparent)}
 .filete svg{width:12px;height:12px;flex:none;color:var(--dorado)}
 
-/* --- Ramitas botánicas --- */
-.ramita{width:92px;height:auto;color:var(--dorado-suave)}
+/* --- Ramitas y flores --- */
+.ramita{width:92px;height:auto;color:var(--verde-hoja)}
 .ramita use{fill:none;stroke:currentColor;stroke-width:1.4;vector-effect:non-scaling-stroke}
 .ramitas{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:6px}
 .espejo{transform:scaleX(-1)}
+
+.floral-hojas use{fill:var(--verde-hoja);opacity:.85}
+.floral-puntos circle{fill:var(--dorado);opacity:.8}
+
+/* --- Corona dorada (imagen de referencia) --- */
+.corona-aro-1{stroke:var(--dorado);stroke-width:1.4;opacity:.85}
+.corona-aro-2{stroke:var(--dorado-suave);stroke-width:.9;opacity:.8}
+.corona-hojas use{fill:var(--verde-hoja)}
+.corona-puntos circle{fill:var(--dorado)}
+
+.corona-monograma{position:relative;width:118px;margin:0 auto 18px}
+.corona-monograma svg{display:block;width:100%;height:auto}
+.corona-letras{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:2rem;letter-spacing:.06em;
+  color:var(--dorado);
+}
+.corona-letras i{font-style:normal;font-size:.62em;margin:0 3px;color:var(--dorado-suave)}
 
 /* --- Etiqueta "Por confirmar" --- */
 .etiqueta{
@@ -177,53 +215,49 @@ section{padding:64px var(--margen);position:relative}
 .boton:active{transform:scale(.97)}
 @media (hover:hover){
   .boton:hover{background:var(--dorado);color:#fff}
-  .boton.solido:hover{background:#93783f;border-color:#93783f}
+  .boton.solido:hover{background:#8f7239;border-color:#8f7239}
 }
 
 .acciones-secundarias{
   display:flex;flex-direction:column;gap:12px;align-items:stretch;margin-top:28px;
 }
 @media (min-width:520px){
-  .acciones-secundarias{flex-direction:row;justify-content:center;gap:14px}
+  .acciones-secundarias{flex-direction:row;justify-content:center;flex-wrap:wrap;gap:14px}
   .acciones-secundarias .boton{flex:0 1 auto}
 }
 
 
 /* ============ 4. BARRA SUPERIOR Y MENÚ ============ */
 .barra{
-  /* Por encima del menú: así la hamburguesa hace de X y el selector de
-     idioma sigue a mano con el menú abierto */
-  position:fixed;top:0;inset-inline:0;z-index:80;
+  position:fixed;top:0;left:0;right:0;z-index:80;
   height:var(--alto-barra);
   display:flex;align-items:center;gap:10px;
   padding-inline:max(14px,env(safe-area-inset-left)) max(14px,env(safe-area-inset-right));
-  background:rgba(250,247,242,0);
+  background:rgba(250,247,240,0);
   border-bottom:1px solid transparent;
   transition:background .4s ease,border-color .4s ease,box-shadow .4s ease;
 }
 .barra.fija{
-  background:rgba(250,247,242,.94);
+  background:rgba(250,247,240,.94);
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
   border-bottom-color:var(--linea);
-  box-shadow:0 6px 20px -18px rgba(94,87,76,.6);
+  box-shadow:0 6px 20px -18px rgba(87,80,63,.6);
 }
 
 .monograma{
   font-family:var(--serif);font-size:20px;letter-spacing:.06em;
   color:var(--tinta);text-decoration:none;flex:none;
   display:flex;align-items:center;height:var(--toque);
-  /* Es un logotipo latino: debe leerse M&F también con la página en árabe */
-  direction:ltr;
 }
 .monograma span{color:var(--dorado);margin-inline:2px;font-size:.8em}
 
 .barra-nav{display:none}          /* en móvil se usa el menú a pantalla completa */
 .barra-acciones{margin-inline-start:auto;display:flex;align-items:center;gap:8px}
 
-/* Selector de idioma */
+/* Selector de idioma ES / العربية */
 .idioma{
   display:flex;flex:none;
-  border:1px solid rgba(169,140,85,.45);border-radius:999px;
+  border:1px solid rgba(168,137,75,.45);border-radius:999px;
   background:rgba(255,255,255,.55);overflow:hidden;
 }
 .idioma button{
@@ -266,10 +300,10 @@ section{padding:64px var(--margen);position:relative}
   display:flex;align-items:center;justify-content:center;
   width:100%;min-height:56px;
   font-family:var(--serif);font-size:1.5rem;color:var(--tinta);
-  text-decoration:none;border-bottom:1px solid rgba(169,140,85,.18);
+  text-decoration:none;border-bottom:1px solid rgba(168,137,75,.18);
 }
 .menu-nav a:last-child{border-bottom:0;color:var(--dorado)}
-.menu-nav a:active{background:rgba(198,180,138,.14)}
+.menu-nav a:active{background:rgba(201,185,140,.14)}
 .menu-adorno{margin-top:28px;opacity:.8}
 
 @media (min-width:900px){
@@ -284,7 +318,7 @@ section{padding:64px var(--margen);position:relative}
     padding:9px 11px;border-radius:999px;white-space:nowrap;
     transition:color .3s ease,background .3s ease;
   }
-  .barra-nav a:hover{color:var(--dorado);background:rgba(198,180,138,.16)}
+  .barra-nav a:hover{color:var(--dorado);background:rgba(201,185,140,.16)}
 }
 
 
@@ -295,136 +329,203 @@ section{padding:64px var(--margen);position:relative}
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;
   padding:calc(var(--alto-barra) + 24px) var(--margen) 40px;
+  background-size:cover;background-position:center;
+  overflow:hidden;
 }
 
-.portada-marco{position:relative;width:100%;max-width:600px;padding:26px 14px 24px}
-.portada-marco::before,.portada-marco::after{
-  content:'';position:absolute;width:34px;height:34px;
-  border:1px solid var(--dorado-suave);opacity:.75;pointer-events:none;
+/* Cuando el JS confirma que la foto existe, la pone de fondo y la
+   tarjeta marfil flota encima (así el texto se lee siempre bien) */
+.portada.con-foto{
+  background-image:var(--foto-portada);
+  /* En pantallas anchas la foto desborda a lo alto: subimos el encuadre
+     para que arriba se vean los novios y no la puerta */
+  background-position:center 32%;
 }
-.portada-marco::before{top:0;left:0;border-right:0;border-bottom:0}
-.portada-marco::after{bottom:0;right:0;border-left:0;border-top:0}
 
-.corazon{display:block;width:min(190px,50vw);height:auto;margin:0 auto 22px}
-.corazon .sin-foto-fondo{fill:#DCD7CE}
-.corazon .sin-foto-texto{
-  font-family:'Jost',sans-serif;font-size:8px;letter-spacing:.2em;
-  fill:#8B8478;text-transform:uppercase;
+/* Velo oscuro: apenas nada donde se ve a los novios, algo más abajo,
+   que es donde apoya la tarjeta y hace falta contraste */
+.portada.con-foto::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,
+    rgba(20,22,16,.10) 0%,
+    rgba(20,22,16,.12) 45%,
+    rgba(20,22,16,.30) 100%);
 }
-.corazon .corazon-borde{fill:none;stroke:var(--dorado);stroke-width:1.6}
+.portada.con-foto .floral{display:none}
 
-.portada-saludo{
-  font-family:var(--script);font-size:2.3rem;color:var(--dorado);
-  line-height:1.05;margin:0 0 4px;
+.portada.con-foto .portada-marco{background:rgba(250,247,240,.9)}
+
+/* ---- Portada con foto, SOLO en móvil -------------------------------
+   En el teléfono la pantalla es alta y estrecha: si la tarjeta se queda
+   centrada, cae justo encima de las caras. Aquí la bajamos, la
+   apretamos y escondemos la flecha, para dejar arriba una ventana
+   limpia a la foto. En ordenador no hace falta nada de esto: la
+   maquetación centrada de siempre se queda como estaba. */
+@media (max-width:899px){
+  .portada.con-foto{justify-content:flex-end}
+  .portada.con-foto .portada-marco{padding:24px 18px 22px}
+  .portada.con-foto .corona-monograma{width:92px}
+  .portada.con-foto .portada-nombres{margin:4px 0 8px}
+  .portada.con-foto .portada-fecha{margin-bottom:16px}
+  .portada.con-foto .portada-texto{font-size:14.8px;line-height:1.6;margin-bottom:18px}
+  .portada.con-foto .corazoncito{margin-top:12px}
+  .portada.con-foto .bajar{display:none}
+
+  /* En móviles altos (casi todos los actuales) la tarjeta recupera el
+     aire de siempre y, al crecer, sube: los nombres quedan más arriba y
+     la foto se sigue viendo entera por encima. En pantallas cortas se
+     queda compacta, que si no tapa a los novios. */
+  @media (min-height:860px){
+    /* Hueco extra abajo: como la tarjeta va anclada al pie, esto la
+       sube entera y deja los nombres más arriba, sin comerse la foto */
+    .portada.con-foto{padding-bottom:70px}
+    .portada.con-foto .portada-marco{padding:34px 20px 30px}
+    .portada.con-foto .corona-monograma{width:104px}
+    .portada.con-foto .portada-nombres{margin:6px 0 10px}
+    .portada.con-foto .portada-fecha{margin-bottom:20px}
+    .portada.con-foto .portada-texto{font-size:15.2px;line-height:1.7;margin-bottom:24px}
+    .portada.con-foto .corazoncito{margin-top:18px}
+  }
 }
-.portada-sub{color:var(--texto-2);font-size:14px;letter-spacing:.03em;margin:0 0 16px}
+
+/* Pantalla más estrecha que la propia foto (todos los móviles en
+   vertical): ahí la foto entra entera a lo alto y no hay nada que
+   reencuadrar, así que la acercamos un poco y la anclamos abajo.
+   Eso sube a los novios hasta la ventana que queda sobre la tarjeta.
+   El límite 9/16 es justo la proporción de la foto, de modo que el
+   ancho siempre sigue cubriendo y nunca aparecen franjas vacías. */
+@media (max-aspect-ratio: 9/16){
+  .portada.con-foto{
+    background-size:auto 120%;
+    background-position:center bottom;
+  }
+}
+
+/* Flores de las esquinas (solo mientras no hay foto de fondo) */
+.floral{position:absolute;width:150px;height:auto;color:var(--verde-hoja);pointer-events:none}
+.esquina-a{top:calc(var(--alto-barra) + 4px);left:-22px}
+.esquina-b{bottom:-6px;right:-22px;transform:rotate(180deg)}
+
+.portada-marco{
+  position:relative;width:100%;max-width:600px;padding:34px 18px 30px;
+  background:rgba(250,247,240,.92);
+  border:1px solid var(--linea);
+}
+.portada-marco::before{
+  content:'';position:absolute;inset:7px;
+  border:1px solid rgba(168,137,75,.35);pointer-events:none;
+}
 
 .portada-nombres{
-  font-family:var(--script);font-size:3.3rem;color:var(--tinta);
-  line-height:1.04;margin:10px 0 4px;
+  font-family:var(--serif);font-size:2.15rem;font-weight:400;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dorado);line-height:1.25;margin:6px 0 10px;
 }
-.portada-nombres .amp{display:block;font-size:.44em;color:var(--dorado);margin:0}
+.portada-nombres .amp{letter-spacing:0}
 
 .portada-fecha{
-  display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;
-  font-family:var(--serif);font-size:1.05rem;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--tinta);margin:14px 0 0;padding:10px 0;
-  border-top:1px solid var(--dorado-suave);border-bottom:1px solid var(--dorado-suave);
-}
-.portada-fecha i{width:4px;height:4px;background:var(--dorado);border-radius:50%;flex:none}
-.portada-ciudad{
-  font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;
-  color:var(--dorado);margin:14px 0 0;
+  font-size:12px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--tinta);margin:0 0 22px;
 }
 
-.bajar{margin-top:30px;display:flex;justify-content:center}
+.portada-texto{font-size:15.5px;margin-bottom:26px}
+.portada-texto p{margin-bottom:.9em}
+
+.corazoncito{
+  display:block;width:15px;height:15px;margin:20px auto 0;
+  color:var(--dorado);opacity:.85;
+}
+
+.bajar{margin-top:28px;display:flex;justify-content:center;position:relative;z-index:1}
 .bajar span{
   display:block;width:1px;height:34px;
   background:linear-gradient(to bottom,var(--dorado-suave),transparent);
   animation:respirar 2.8s ease-in-out infinite;
 }
+.portada.con-foto .bajar span{
+  background:linear-gradient(to bottom,rgba(255,255,255,.85),transparent);
+}
 @keyframes respirar{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
 
 @media (min-width:600px){
-  .portada-marco{padding:38px 26px 34px}
-  .portada-marco::before,.portada-marco::after{width:46px;height:46px}
-  .corazon{width:220px;margin-bottom:26px}
-  .portada-saludo{font-size:3rem}
-  .portada-sub{font-size:15px}
-  .portada-nombres{font-size:4.6rem}
-  .portada-fecha{font-size:1.3rem;gap:16px}
+  .portada-marco{padding:46px 40px 40px}
+  .corona-monograma{width:132px}
+  .portada-nombres{font-size:3rem}
+  .portada-fecha{font-size:13.5px}
+  .portada-texto{font-size:16.5px}
+  .floral{width:210px}
   .ramita{width:110px}
 }
 @media (min-width:900px){
-  .portada-nombres{font-size:5.4rem}
+  .portada-nombres{font-size:3.4rem}
+  .floral{width:250px}
 }
 
 
-/* ============ 6. INVITACIÓN ============ */
-.datos{
-  display:grid;gap:1px;margin-top:32px;
-  background:var(--linea);border:1px solid var(--linea);
-}
-.datos li{background:var(--marfil);padding:22px 16px;text-align:center}
-.crema .datos li{background:var(--crema)}
-.datos-etq{
-  display:block;font-size:10px;letter-spacing:.26em;text-transform:uppercase;
-  color:var(--dorado);margin-bottom:7px;
-}
-.datos-val{display:block;font-family:var(--serif);font-size:1.28rem;color:var(--tinta);line-height:1.3}
-.datos-pie{display:block;font-size:12.5px;color:var(--texto-2);margin-top:3px}
+/* ============ 6. LA CELEBRACIÓN ============ */
+.celebracion-grid{display:grid;gap:40px;margin-top:34px;align-items:center}
 
-@media (min-width:640px){
-  .datos{grid-template-columns:repeat(3,1fr)}
-  .datos li{padding:26px 18px}
+.celebracion-datos{display:flex;flex-direction:column;align-items:center;gap:4px}
+.dato-linea{
+  display:flex;align-items:center;gap:11px;margin:0 0 10px;
+  font-family:var(--serif);font-size:1.3rem;color:var(--tinta);
 }
+.dato-linea svg{width:20px;height:20px;color:var(--dorado);flex:none}
 
+.celebracion-reloj .antetitulo{margin-bottom:16px}
 
-/* ============ 7. CUENTA ATRÁS ============ */
+/* Cuenta atrás en rejilla 2×2 con el corazón en el centro (como en el
+   diseño que validó la pareja) */
 .reloj{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:8px;
-  margin-top:28px;
+  position:relative;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:10px;
+  max-width:420px;margin-inline:auto;
 }
 .reloj-caja{
-  padding:14px 4px 12px;
+  padding:16px 6px 13px;
   background:var(--marfil);border:1px solid var(--linea);
 }
 .crema .reloj-caja{background:rgba(255,255,255,.55)}
 .reloj-caja b{
   display:block;font-family:var(--serif);font-weight:300;
-  font-size:2.1rem;line-height:1;color:var(--dorado);
-  font-variant-numeric:tabular-nums;
+  font-size:2.3rem;line-height:1;color:var(--dorado);
+  /* Cormorant dibuja por defecto cifras antiguas: el 1 sale bajito y se
+     confunde con una I (441 parecía "44I"). Pedimos cifras modernas. */
+  font-variant-numeric:lining-nums tabular-nums;
+  font-feature-settings:'lnum' 1,'tnum' 1;
 }
 .reloj-caja span{
   display:block;margin-top:7px;
-  font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--texto-2);
+  font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--texto-2);
+}
+.reloj-corazon{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:22px;height:22px;color:var(--dorado);
+  background:var(--crema);border-radius:50%;padding:5px;
 }
 .reloj-aviso{margin-top:24px;font-family:var(--serif);font-size:1.3rem;color:var(--tinta)}
 
-@media (min-width:520px){
-  .reloj{gap:14px;max-width:560px;margin-inline:auto}
-  .reloj-caja{padding:18px 8px 14px}
+@media (min-width:760px){
+  .celebracion-grid{grid-template-columns:1fr 1fr;gap:30px}
+  .celebracion-datos{align-items:flex-start;text-align:start}
+  .celebracion-datos .acciones-secundarias{justify-content:flex-start}
   .reloj-caja b{font-size:2.8rem}
-  .reloj-caja span{font-size:10px;letter-spacing:.2em}
-}
-@media (min-width:900px){
-  .reloj-caja b{font-size:3.1rem}
 }
 
 
-/* ============ 8. ITINERARIO ============ */
+/* ============ 7. ITINERARIO ============ */
 .linea-tiempo{
   position:relative;margin-top:36px;text-align:start;
   padding-inline-start:26px;
 }
 .linea-tiempo::before{
-  content:'';position:absolute;inset-block:8px;inset-inline-start:5px;width:1px;
+  content:'';position:absolute;top:8px;bottom:8px;left:5px;width:1px;
   background:linear-gradient(to bottom,transparent,var(--dorado-suave) 7%,var(--dorado-suave) 93%,transparent);
 }
 .linea-tiempo li{position:relative;padding-bottom:30px}
 .linea-tiempo li:last-child{padding-bottom:0}
 .linea-tiempo li::before{
-  content:'';position:absolute;inset-inline-start:-25.5px;top:7px;
+  content:'';position:absolute;left:-25.5px;top:7px;
   width:9px;height:9px;border-radius:50%;
   background:var(--marfil);border:1.5px solid var(--dorado);
 }
@@ -432,28 +533,31 @@ section{padding:64px var(--margen);position:relative}
 
 .lt-hora{
   font-family:var(--serif);font-size:1.35rem;color:var(--dorado);
-  line-height:1.1;margin:0 0 3px;font-variant-numeric:tabular-nums;letter-spacing:.03em;
+  line-height:1.1;margin:0 0 3px;letter-spacing:.03em;
+  font-variant-numeric:lining-nums tabular-nums;
+  font-feature-settings:'lnum' 1,'tnum' 1;
 }
 .lt-cuerpo h3{font-size:1.22rem;color:var(--tinta);margin:0 0 3px}
 .lt-cuerpo p{color:var(--texto-2);font-size:14.5px;margin:0}
 
 @media (min-width:760px){
   .linea-tiempo{padding-inline-start:0;max-width:740px;margin-inline:auto}
-  .linea-tiempo::before{inset-inline-start:126px}
+  .linea-tiempo::before{left:126px}
   .linea-tiempo li{
     display:grid;grid-template-columns:126px 1fr;column-gap:42px;padding-bottom:38px;
   }
-  .linea-tiempo li::before{inset-inline-start:121.5px;top:10px}
+  .linea-tiempo li::before{left:121.5px;top:10px}
   .lt-hora{text-align:end;font-size:1.5rem;margin:0}
   .lt-cuerpo h3{font-size:1.32rem}
   .lt-cuerpo p{font-size:15px}
 }
 
 
-/* ============ 9. UBICACIÓN ============ */
+/* ============ 8. DÓNDE SERÁ ============ */
 .lugar{margin-top:20px}
-.lugar-nombre{font-family:var(--serif);font-size:1.4rem;color:var(--tinta);margin:0 0 6px}
-.lugar-dir{color:var(--texto-2);font-size:14.5px;margin:0}
+.lugar-nombre{font-family:var(--serif);font-size:1.5rem;color:var(--tinta);margin:0 0 6px}
+.lugar-dir{color:var(--texto-2);font-size:14.5px;margin:0 0 12px}
+.lugar-desc{color:var(--texto-2);font-size:15px;margin:0}
 
 .mapa{
   position:relative;margin-top:26px;
@@ -476,8 +580,72 @@ section{padding:64px var(--margen);position:relative}
 .mapa.cargado .mapa-cargando{opacity:0;pointer-events:none}
 
 @media (min-width:600px){
-  .lugar-nombre{font-size:1.7rem}
+  .lugar-nombre{font-size:1.8rem}
   .mapa iframe{aspect-ratio:16/9}
+}
+
+
+/* ============ 9. SECCIÓN PARALLAX (foto + capa oscura) ============ */
+.parallax{
+  padding:96px var(--margen);
+  background-color:var(--crema);           /* mientras no hay foto */
+  background-size:cover;background-position:center;
+}
+.parallax-velo{display:none}
+.parallax-contenido{position:relative;z-index:1}
+
+.parallax-frase{
+  font-family:var(--script);font-size:2rem;color:var(--dorado);
+  line-height:1.4;margin:18px 0 10px;
+}
+.parallax-firma{
+  font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--texto-2);margin:0;
+}
+
+/* Con la foto cargada: capa oscura encima y texto en blanco */
+.parallax.con-foto{background-image:var(--foto-parallax)}
+.parallax.con-foto .parallax-velo{
+  display:block;position:absolute;inset:0;background:var(--velo);
+}
+.parallax.con-foto .parallax-frase{color:#fff;text-shadow:0 1px 14px rgba(0,0,0,.35)}
+.parallax.con-foto .parallax-firma{color:rgba(255,255,255,.85)}
+.parallax.con-foto .ramita{color:rgba(255,255,255,.8)}
+
+/* El efecto de fondo fijo solo en pantallas grandes con ratón (en móvil
+   iOS va a tirones) y nunca para quien pide menos movimiento */
+@media (min-width:900px) and (hover:hover) and (prefers-reduced-motion:no-preference){
+  .parallax.con-foto{background-attachment:fixed}
+}
+
+@media (min-width:600px){
+  .parallax{padding:130px var(--margen)}
+  .parallax-frase{font-size:2.7rem}
+}
+
+
+/* ============ 9 bis. BANDA DE FOTO ============
+   Un respiro entre la mesa de regalos y la confirmación: solo la foto,
+   sin texto encima, con dos filetes dorados que la enmarcan. Nace
+   oculta (atributo hidden) y el JS la muestra si el archivo existe. */
+.banda-foto{
+  padding:0;
+  height:52svh;
+  min-height:260px;max-height:520px;
+  background-image:var(--foto-banda);
+  background-size:cover;
+  /* La pareja queda en la mitad de abajo del encuadre */
+  background-position:center 58%;
+  border-block:1px solid var(--linea);
+}
+.banda-foto[hidden]{display:none}
+
+@media (min-width:700px){
+  .banda-foto{height:58vh;max-height:620px}
+}
+/* En ordenador con ratón, el mismo efecto de fondo fijo que el parallax */
+@media (min-width:900px) and (hover:hover) and (prefers-reduced-motion:no-preference){
+  .banda-foto{background-attachment:fixed}
 }
 
 
@@ -497,23 +665,37 @@ section{padding:64px var(--margen);position:relative}
 @media (hover:hover){
   .tarjeta:hover{
     transform:translateY(-4px);border-color:var(--dorado-suave);
-    box-shadow:0 18px 34px -28px rgba(94,87,76,.7);
+    box-shadow:0 18px 34px -28px rgba(87,80,63,.7);
   }
 }
 @media (min-width:700px){
-  .tarjetas{grid-template-columns:repeat(3,1fr);gap:20px}
+  .tarjetas{grid-template-columns:repeat(2,1fr);gap:20px}
+}
+@media (min-width:900px){
+  .tarjetas{grid-template-columns:repeat(3,1fr)}
   .tarjeta{padding:32px 24px}
+  /* Con 5 tarjetas, las dos últimas quedan centradas */
+  .tarjeta:nth-child(4){grid-column:1 / 2;margin-inline-start:auto;width:100%}
 }
 
 .aviso{
   margin-top:26px;padding:20px 18px;text-align:center;
-  border:1px dashed var(--dorado-suave);background:rgba(198,180,138,.1);
+  border:1px dashed var(--dorado-suave);background:rgba(201,185,140,.1);
   color:var(--texto-2);font-size:14.5px;
 }
 .aviso strong{color:var(--dorado)}
+.aviso .etiqueta{margin:0 0 8px}
 
 
-/* ============ 11. CONFIRMAR ASISTENCIA ============ */
+/* ============ 11. MESA DE REGALOS ============ */
+.regalos-icono svg{width:38px;height:38px}
+.regalos-gracias{
+  font-family:var(--script);font-size:1.5rem;color:var(--dorado);
+  margin-top:14px;
+}
+
+
+/* ============ 12. CONFIRMAR ASISTENCIA ============ */
 .rsvp{
   background:var(--marfil);border:1px solid var(--linea);
   padding:32px 20px;text-align:center;
@@ -521,12 +703,10 @@ section{padding:64px var(--margen);position:relative}
 .crema .rsvp{background:rgba(255,255,255,.62)}
 .rsvp .ramitas{margin-bottom:14px}
 .rsvp .ramita{width:76px}
-.rsvp-fecha{
-  font-family:var(--serif);font-size:1.55rem;color:var(--dorado);
-  margin:8px 0 6px;letter-spacing:.03em;
-}
+.rsvp-fecha{margin:10px 0 8px}
+.rsvp-fecha .etiqueta{margin:0;font-size:10.5px;padding:5px 13px}
 .rsvp-lista{
-  margin:22px auto 26px;max-width:360px;text-align:start;
+  margin:22px auto 26px;max-width:400px;text-align:start;
   color:var(--texto-2);font-size:15px;
 }
 .rsvp-lista li{position:relative;padding-inline-start:22px;margin-bottom:9px}
@@ -543,39 +723,73 @@ section{padding:64px var(--margen);position:relative}
 @media (min-width:600px){
   .rsvp{padding:50px 40px}
   .rsvp .ramita{width:88px}
-  .rsvp-fecha{font-size:2rem}
   .boton.grande{width:auto;min-width:280px}
 }
 
 
-/* ============ 12. CIERRE Y PIE ============ */
+/* ============ 13. CIERRE, PIE Y BANDA VERDE ============ */
 .cierre{padding-block:72px}
+
+/* Foto del ramo dentro de la corona dorada */
+.corona-foto{position:relative;width:210px;margin:0 auto}
+.corona-foto svg{display:block;width:100%;height:auto}
+.corona-foto img{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:71%;height:71%;object-fit:cover;border-radius:50%;
+}
+.corona-foto img[hidden]{display:none}
+
 .cierre-frase{
   font-family:var(--script);font-size:1.85rem;color:var(--dorado);
-  line-height:1.35;margin:20px auto 0;max-width:600px;
+  line-height:1.35;margin:24px auto 0;max-width:600px;
 }
-footer{
-  padding:32px var(--margen) 40px;text-align:center;
-  border-top:1px solid rgba(169,140,85,.25);
-  color:var(--texto-2);font-size:11.5px;letter-spacing:.14em;
+
+footer{padding:0;text-align:center}
+
+.pie-enlaces{
+  display:flex;justify-content:center;flex-wrap:wrap;gap:6px;
+  padding:26px var(--margen);
+}
+.pie-enlaces a,.pie-musica{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  min-width:86px;padding:10px 8px;
+  font-family:var(--sans);font-size:10px;font-weight:400;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--texto-2);text-decoration:none;
+  background:transparent;border:0;cursor:pointer;
+  transition:color .3s ease;
+}
+.pie-enlaces svg{width:20px;height:20px;color:var(--dorado)}
+.pie-enlaces a:hover,.pie-musica:hover{color:var(--dorado)}
+
+.pie-banda{
+  background:var(--verde);color:#fff;
+  padding:26px var(--margen) calc(30px + var(--seguro-abajo));
 }
 .pie-nombres{
-  font-family:var(--script);font-size:1.7rem;color:var(--dorado);
+  font-family:var(--script);font-size:1.9rem;color:#fff;
   letter-spacing:0;margin:0 0 4px;
 }
+.pie-nombres span{color:rgba(255,255,255,.75)}
+.pie-fecha{
+  margin:0;font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(255,255,255,.85);
+}
+
 @media (min-width:600px){
   .cierre{padding-block:96px}
-  .cierre-frase{font-size:2.5rem}
+  .cierre-frase{font-size:2.4rem}
+  .corona-foto{width:250px}
 }
 
 
-/* ============ 13. BARRA INFERIOR Y MENSAJES ============ */
+/* ============ 14. BARRA INFERIOR, MÚSICA Y MENSAJES ============ */
 .barra-inferior{
-  position:fixed;inset-inline:0;bottom:0;z-index:55;
+  position:fixed;left:0;right:0;bottom:0;z-index:55;
   display:flex;gap:10px;
   padding:10px max(12px,env(safe-area-inset-left))
           calc(10px + var(--seguro-abajo)) max(12px,env(safe-area-inset-right));
-  background:rgba(250,247,242,.95);
+  background:rgba(250,247,240,.95);
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
   border-top:1px solid var(--linea);
   transform:translateY(110%);
@@ -590,11 +804,31 @@ footer{
   .barra-inferior{display:none}
 }
 
+/* Botón flotante de la música (discreto, en la esquina) */
+.boton-musica{
+  position:fixed;z-index:60;
+  right:max(14px,env(safe-area-inset-right));
+  bottom:calc(var(--alto-barra-inferior) + var(--seguro-abajo) + 14px);
+  width:46px;height:46px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(250,247,240,.92);color:var(--dorado);
+  border:1px solid var(--dorado-suave);
+  box-shadow:0 10px 24px -14px rgba(87,80,63,.55);
+  cursor:pointer;
+  transition:bottom .35s cubic-bezier(.22,.61,.36,1),background .3s ease,color .3s ease,transform .12s ease;
+}
+.boton-musica[hidden]{display:none}
+.boton-musica svg{width:20px;height:20px}
+.boton-musica:active{transform:scale(.94)}
+.boton-musica[aria-pressed="true"]{background:var(--dorado);color:#fff;border-color:var(--dorado)}
+.boton-musica[aria-pressed="true"] svg{animation:vaiven 2.2s ease-in-out infinite}
+@keyframes vaiven{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+
 /* Mensajes breves */
 .mensaje{
   position:fixed;z-index:90;
   bottom:calc(var(--alto-barra-inferior) + var(--seguro-abajo) + 16px);
-  inset-inline:16px;margin:0;
+  left:16px;right:16px;margin:0;
   background:var(--tinta);color:var(--marfil);
   padding:13px 18px;border-radius:3px;text-align:center;
   font-size:13.5px;letter-spacing:.04em;
@@ -604,12 +838,12 @@ footer{
 }
 .mensaje.visible{opacity:1;transform:none}
 @media (min-width:600px){
-  .mensaje{inset-inline:auto;left:50%;transform:translate(-50%,12px);min-width:280px}
+  .mensaje{left:50%;right:auto;transform:translate(-50%,12px);min-width:280px}
   .mensaje.visible{transform:translate(-50%,0)}
 }
 
 
-/* ============ 14. ANIMACIONES AL HACER SCROLL ============ */
+/* ============ 15. ANIMACIONES AL HACER SCROLL ============ */
 .animar{
   opacity:0;transform:translateY(18px);
   transition:opacity .8s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.22,.61,.36,1);
@@ -618,11 +852,13 @@ footer{
 .retraso-1{transition-delay:.1s}
 .retraso-2{transition-delay:.2s}
 
-/* Quien pide menos movimiento, no ve ninguno */
+/* Quien pide menos movimiento, no ve ninguno (y el parallax pasa a
+   ser un fondo normal, ver la sección 9) */
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .animar{opacity:1 !important;transform:none !important;transition:none !important}
   .bajar span{animation:none}
+  .boton-musica[aria-pressed="true"] svg{animation:none}
   *,*::before,*::after{
     transition-duration:.01ms !important;
     animation-duration:.01ms !important;
@@ -631,35 +867,43 @@ footer{
 }
 
 
-/* ============ 15. VERSIÓN EN ÁRABE ============ */
+/* ============ 16. VERSIÓN EN ÁRABE ============ */
+/* Se activa con el botón ES / العربية. El JS pone dir="rtl" en la
+   página y la clase "arabe" en el body; aquí solo cambiamos tipografía
+   y espaciados. La maquetación se voltea sola porque todo está hecho
+   con propiedades lógicas (inset-inline, padding-inline...). */
 body.arabe{font-family:var(--arabe);font-weight:400;line-height:1.95}
 
 body.arabe h1,body.arabe h2,body.arabe h3,
-body.arabe .portada-saludo,body.arabe .portada-nombres,
-body.arabe .portada-fecha,body.arabe .cierre-frase,body.arabe .pie-nombres,
-body.arabe .lt-hora,body.arabe .reloj-caja b,body.arabe .rsvp-fecha,
-body.arabe .datos-val,body.arabe .menu-nav a,body.arabe .monograma{
-  font-family:var(--arabe);
+body.arabe .portada-nombres,body.arabe .portada-fecha,
+body.arabe .cierre-frase,body.arabe .parallax-frase,body.arabe .parallax-firma,
+body.arabe .pie-nombres,body.arabe .lt-hora,body.arabe .reloj-caja b,
+body.arabe .rsvp-fecha,body.arabe .lugar-nombre,body.arabe .menu-nav a,
+body.arabe .titulo,body.arabe .dato-linea span{font-family:var(--arabe)}
+
+/* El árabe no admite espaciado entre letras ni versalitas */
+body.arabe .antetitulo,body.arabe .reloj-caja span,body.arabe .portada-fecha,
+body.arabe .portada-nombres,body.arabe .etiqueta,body.arabe .boton,
+body.arabe .barra-nav a,body.arabe .pie-enlaces span,body.arabe .pie-fecha,
+body.arabe .pie-musica span,body.arabe footer,body.arabe .lugar-dir{
+  letter-spacing:0;text-transform:none;
 }
 
-/* El árabe necesita más interlineado y no admite espaciado entre letras */
-body.arabe .antetitulo,body.arabe .reloj-caja span,body.arabe .datos-etq,
-body.arabe .portada-ciudad,body.arabe .etiqueta,body.arabe .boton,
-body.arabe .barra-nav a,body.arabe footer{letter-spacing:0;text-transform:none}
-
-body.arabe .antetitulo,body.arabe .reloj-caja span,
-body.arabe .datos-etq,body.arabe .portada-ciudad{font-size:12.5px}
+body.arabe .antetitulo,body.arabe .reloj-caja span{font-size:13px}
 body.arabe .boton{font-size:14px;font-weight:400}
 body.arabe .etiqueta{font-size:11px}
-body.arabe .portada-saludo{font-size:1.9rem}
-body.arabe .portada-nombres{font-size:2.5rem;line-height:1.35}
-body.arabe .portada-fecha{font-size:1rem;letter-spacing:.04em}
-body.arabe .cierre-frase{font-size:1.4rem;line-height:1.8}
-body.arabe .pie-nombres{font-size:1.4rem}
 body.arabe .barra-nav a{font-size:13.5px}
+body.arabe .menu-nav a{font-size:1.35rem}
+body.arabe .portada-nombres{font-size:1.9rem;line-height:1.45}
+body.arabe .portada-fecha{font-size:14px}
+body.arabe .portada-texto{font-size:14.5px;line-height:1.85}
+body.arabe .cierre-frase,body.arabe .parallax-frase{font-size:1.35rem;line-height:1.8}
+body.arabe .pie-nombres{font-size:1.5rem}
+
+/* El monograma es un logotipo latino: debe leerse F&M también en árabe */
+body.arabe .monograma,body.arabe .corona-letras{direction:ltr}
 
 @media (min-width:600px){
-  body.arabe .portada-nombres{font-size:3.6rem}
-  body.arabe .portada-saludo{font-size:2.4rem}
-  body.arabe .cierre-frase{font-size:1.9rem}
+  body.arabe .portada-nombres{font-size:2.6rem}
+  body.arabe .cierre-frase,body.arabe .parallax-frase{font-size:1.8rem}
 }
