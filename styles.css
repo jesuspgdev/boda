@@ -175,15 +175,15 @@ section{padding:64px var(--margen);position:relative}
 .corona-hojas use{fill:var(--verde-hoja)}
 .corona-puntos circle{fill:var(--dorado)}
 
-.corona-monograma{position:relative;width:118px;margin:0 auto 18px}
+.corona-monograma{position:relative;width:150px;margin:0 auto 18px}
 .corona-monograma svg{display:block;width:100%;height:auto}
 .corona-letras{
   position:absolute;inset:0;
   display:flex;align-items:center;justify-content:center;
-  font-family:var(--script);font-size:2.3rem;letter-spacing:0;
+  font-family:var(--script);font-size:1.6rem;letter-spacing:0;
   color:var(--dorado);
 }
-.corona-letras i{font-style:normal;font-size:.62em;margin:0 3px;color:var(--dorado-suave)}
+.corona-letras i{font-style:normal;font-size:.6em;margin:0 1px;color:var(--dorado-suave)}
 
 /* --- Etiqueta "Por confirmar" --- */
 .etiqueta{
@@ -364,7 +364,7 @@ section{padding:64px var(--margen);position:relative}
 @media (max-width:899px){
   .portada.con-foto{justify-content:flex-end}
   .portada.con-foto .portada-marco{padding:24px 18px 22px}
-  .portada.con-foto .corona-monograma{width:92px}
+  .portada.con-foto .corona-monograma{width:122px}
   .portada.con-foto .portada-nombres{margin:4px 0 8px}
   .portada.con-foto .portada-fecha{margin-bottom:16px}
   .portada.con-foto .portada-texto{font-size:14.8px;line-height:1.6;margin-bottom:18px}
@@ -380,7 +380,7 @@ section{padding:64px var(--margen);position:relative}
        sube entera y deja los nombres más arriba, sin comerse la foto */
     .portada.con-foto{padding-bottom:70px}
     .portada.con-foto .portada-marco{padding:34px 20px 30px}
-    .portada.con-foto .corona-monograma{width:104px}
+    .portada.con-foto .corona-monograma{width:140px}
     .portada.con-foto .portada-nombres{margin:6px 0 10px}
     .portada.con-foto .portada-fecha{margin-bottom:20px}
     .portada.con-foto .portada-texto{font-size:15.2px;line-height:1.7;margin-bottom:24px}
@@ -457,7 +457,8 @@ section{padding:64px var(--margen);position:relative}
 
 @media (min-width:600px){
   .portada-marco{padding:46px 40px 40px}
-  .corona-monograma{width:132px}
+  .corona-monograma{width:168px}
+  .corona-letras{font-size:1.9rem}
   .portada-nombres{font-size:4rem}
   .portada-fecha{font-size:13.5px}
   .portada-texto{font-size:16.5px}
@@ -598,8 +599,14 @@ section{padding:64px var(--margen);position:relative}
 
 
 /* ============ 9. SECCIÓN PARALLAX (foto + capa oscura) ============ */
+/* El texto va ANCLADO ABAJO, no centrado. Es la única forma fiable de
+   que no caiga sobre las caras: en una foto de dos personas de pie, la
+   parte de abajo son siempre las piernas, pase lo que pase con el
+   recorte. Centrado, la frase y las caras coinciden siempre. */
 .parallax{
-  padding:96px var(--margen);
+  padding:96px var(--margen) 44px;
+  min-height:72svh;
+  display:flex;flex-direction:column;justify-content:flex-end;
   background-color:var(--crema);           /* mientras no hay foto */
   background-size:cover;background-position:center;
 }
@@ -614,11 +621,23 @@ section{padding:64px var(--margen);position:relative}
   font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;
   color:var(--texto-2);margin:0;
 }
-/* Las ramitas cierran el bloque por abajo, no lo abren por arriba */
-.parallax-contenido .ramitas{margin:22px 0 0}
+/* Las ramitas cierran el bloque por abajo, no lo abren por arriba, y
+   bien separadas: pegadas al texto le caían en la cara a Fatna */
+.parallax-contenido .ramitas{margin:64px 0 0}
 
-/* Con la foto cargada: capa oscura encima y texto en blanco */
-.parallax.con-foto{background-image:var(--foto-parallax)}
+/* Con la foto cargada: capa oscura encima y texto en blanco.
+   El encuadre sube: centrado, la frase caía justo sobre sus caras.
+   Provisional hasta que Miguel pase la foto nueva. */
+.parallax.con-foto{
+  background-image:var(--foto-parallax);
+  /* Deja a la pareja en la mitad de arriba, por encima del texto */
+  background-position:center 30%;
+}
+@media (min-width:760px){
+  /* En pantalla ancha la foto vertical se amplía muchísimo, así que
+     hay que bajar más el encuadre para que las caras sigan arriba */
+  .parallax.con-foto{background-position:center 42%}
+}
 .parallax.con-foto .parallax-velo{
   display:block;position:absolute;inset:0;background:var(--velo);
 }
@@ -633,7 +652,9 @@ section{padding:64px var(--margen);position:relative}
 }
 
 @media (min-width:600px){
-  .parallax{padding:130px var(--margen)}
+  /* Cuanto más alta es la banda, menos hay que ampliar la foto vertical
+     y más sitio queda entre las caras y el texto */
+  .parallax{padding:130px var(--margen) 56px;min-height:88vh}
   .parallax-frase{font-size:2.7rem}
 }
 
@@ -653,6 +674,11 @@ section{padding:64px var(--margen);position:relative}
   border-block:1px solid var(--linea);
 }
 .banda-foto[hidden]{display:none}
+/* Mismo velo oscuro que la sección del parallax, para que las dos
+   fotos a sangre tengan el mismo tono aunque esta no lleve texto */
+.banda-foto::before{
+  content:'';position:absolute;inset:0;background:var(--velo);
+}
 
 @media (min-width:700px){
   .banda-foto{height:58vh;max-height:620px}
