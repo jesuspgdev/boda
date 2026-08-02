@@ -27,12 +27,11 @@
    ================================================================ */
 const CONFIG = {
 
-  /* Fecha y hora de la boda.
-     El "+02:00" es el horario de verano español, que el 17 de octubre
-     de 2027 sigue vigente. Cuando se confirme la hora de la ceremonia,
-     cambia solo "12:00:00" (por ejemplo "17:30:00").
-     Así la cuenta atrás sale bien esté donde esté el invitado. */
-  fechaBoda: '2027-10-17T12:00:00+02:00',
+  /* Fecha y hora de la ceremonia: sábado 17 de octubre de 2026, 19:00.
+     El "+02:00" es el horario de verano español, que ese día sigue
+     vigente (el cambio de hora es el 25 de octubre). Gracias a eso la
+     cuenta atrás sale bien esté donde esté el invitado. */
+  fechaBoda: '2026-10-17T19:00:00+02:00',
 
   /* Cuántas horas dura el evento. Solo se usa para el archivo de
      calendario, para que el invitado no se bloquee el día entero. */
@@ -42,11 +41,23 @@ const CONFIG = {
      Se abre en pestaña nueva desde todos los botones de confirmar. */
   formulario: 'https://docs.google.com/forms/d/e/1FAIpQLSdD9nJdal2QIGYYscEnS0RkpFOHQZ9p-4FgyFSfkqTuB9Z9xw/viewform?usp=header',
 
-  /* Enlace de Google Maps (el que compartió la pareja, tal cual) */
-  mapa: 'https://maps.app.goo.gl/hFBxsLLNG9jkrzfWA?g_st=ig',
+  /* UBICACIÓN · se toca solo aquí. El JS pone este enlace en todos los
+     botones de "Cómo llegar" y monta con él el mapa incrustado.
+
+     Ojo: la Sala Sofía Palacios NO está dada de alta en Google Maps.
+     Si la buscas por su nombre no sale. Lo que sí sale es el recinto
+     que la contiene, el Club Hípico y Polideportivo de Almería, y por
+     eso el mapa y el enlace apuntan a la dirección del recinto. */
+  mapa: 'https://maps.app.goo.gl/Fpr5xjMgJ3d8sCZV7?g_st=aw',
+
+  /* Lo que se busca en el mapa incrustado. Va por NOMBRE del recinto y
+     no por dirección: la carretera sola cae en mitad del campo (probado,
+     salía el parque El Boticario), mientras que el nombre pone la
+     chincheta justo en la entrada. */
+  mapaBusqueda: 'Club Hípico y Polideportivo de Almería, El Alquián, Almería',
 
   /* Datos del lugar, para el archivo de calendario */
-  lugar: 'Sala Sofía Palacios, Camino de la Mojonera 50, 04745 La Mojonera, Almería',
+  lugar: 'Sala Sofía Palacios (dentro del Club Hípico y Polideportivo de Almería), Carretera Viator al Alquián Km 4.2, 04120 El Alquián, Almería',
 
   /* Título del evento en el calendario */
   tituloEvento: 'Boda de Fatna y Miguel',
@@ -121,8 +132,8 @@ const Idioma = (() => {
   const CIFRAS_AR = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
 
   const TITULOS = {
-    es: 'Fatna & Miguel · 17 de octubre de 2027',
-    ar: 'فاطنة وميغيل · ١٧ أكتوبر ٢٠٢٧'
+    es: 'Fatna & Miguel · 17 de octubre de 2026',
+    ar: 'فاطنة وميغيل · ١٧ أكتوبر ٢٠٢٦'
   };
 
   const TEXTOS = {
@@ -391,18 +402,26 @@ const Idioma = (() => {
 
 
 /* ================================================================
-   8 · MAPA (se descarga solo cuando se acerca a la pantalla)
+   8 · MAPA Y ENLACES DE "CÓMO LLEGAR"
    -----------------------------------------------------------------
-   Un mapa de Google pesa bastante. Quien abra la invitación solo
-   para mirar la fecha no gasta esos datos.
+   Todo sale de CONFIG (mapa y mapaBusqueda), así que para cambiar de
+   sitio basta con tocar esas dos líneas de arriba.
+
+   El mapa además no se descarga hasta que se acerca a la pantalla:
+   pesa bastante y quien abra la invitación solo para mirar la fecha
+   no tiene por qué gastar esos datos.
    ================================================================ */
 (() => {
   const caja = $('#mapa');
   const marco = $('iframe', caja);
 
+  /* Todos los botones que llevan a Google Maps */
+  $$('.enlace-mapa').forEach(enlace => { enlace.href = CONFIG.mapa; });
+
   function cargar(){
     if (marco.src) return;
-    marco.src = marco.dataset.src;
+    marco.src = 'https://www.google.com/maps?q=' +
+      encodeURIComponent(CONFIG.mapaBusqueda) + '&hl=es&z=16&output=embed';
     marco.addEventListener('load', () => caja.classList.add('cargado'), { once:true });
   }
 
@@ -429,7 +448,7 @@ const Idioma = (() => {
 (() => {
   const boton = $('#btn-calendario');
 
-  /* 20271017T100000Z: el formato que pide el estándar iCalendar */
+  /* 20261017T170000Z: el formato que pide el estándar iCalendar */
   const enFormatoICS = fecha =>
     fecha.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
 
@@ -449,7 +468,7 @@ const Idioma = (() => {
       'CALSCALE:GREGORIAN',
       'METHOD:PUBLISH',
       'BEGIN:VEVENT',
-      'UID:boda-fatna-miguel-20271017',
+      'UID:boda-fatna-miguel-20261017',
       `DTSTAMP:${enFormatoICS(new Date())}`,
       `DTSTART:${enFormatoICS(inicio)}`,
       `DTEND:${enFormatoICS(fin)}`,
@@ -503,7 +522,7 @@ const Idioma = (() => {
   boton.addEventListener('click', async () => {
     const datos = {
       title: 'Fatna & Miguel',
-      text: '¡Nos casamos! 17 de octubre de 2027, Almería.',
+      text: '¡Nos casamos! 17 de octubre de 2026, Almería.',
       url: location.href
     };
 
