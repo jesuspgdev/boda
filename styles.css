@@ -542,17 +542,32 @@ section{padding:64px var(--margen);position:relative}
 }
 .crema .linea-tiempo li::before{background:var(--crema)}
 
+/* La hora, cuando la hay. Solo la llevan los momentos ya cerrados;
+   los demás empiezan directamente por el título y la línea dorada se
+   encarga de mantener el orden. */
+.lt-hora{
+  font-family:var(--sans);font-size:11.5px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dorado);margin:0 0 5px;
+  font-variant-numeric:lining-nums tabular-nums;
+  font-feature-settings:'lnum' 1,'tnum' 1;
+}
 .lt-cuerpo h3{font-size:1.22rem;color:var(--tinta);margin:0 0 3px}
 .lt-cuerpo p{color:var(--texto-2);font-size:14.5px;margin:0}
 
-/* Sin horas, el programa es una sola columna: los momentos van
-   encadenados por la línea dorada, en el orden en que pasarán. */
+/* El programa va en una sola columna, con la hora encima del título
+   del momento que la tenga */
 @media (min-width:760px){
   .linea-tiempo{max-width:600px;margin-inline:auto}
   .linea-tiempo li{padding-bottom:36px}
+  .lt-hora{font-size:12px}
   .lt-cuerpo h3{font-size:1.32rem}
   .lt-cuerpo p{font-size:15px}
 }
+
+/* El aviso de "programa provisional" es una nota al pie del
+   itinerario, así que va más estrecho que el de actividades */
+#itinerario .aviso{max-width:520px;margin-inline:auto}
 
 
 /* ============ 8. DÓNDE SERÁ ============ */
@@ -708,14 +723,16 @@ section{padding:64px var(--margen);position:relative}
     box-shadow:0 18px 34px -28px rgba(87,80,63,.7);
   }
 }
+/* Dos tarjetas: dos columnas y el bloque acotado y centrado, para que
+   no queden pegadas a un lado con un hueco vacío al otro */
 @media (min-width:700px){
-  .tarjetas{grid-template-columns:repeat(2,1fr);gap:20px}
+  .tarjetas{
+    grid-template-columns:repeat(2,1fr);gap:20px;
+    max-width:680px;margin-inline:auto;
+  }
 }
 @media (min-width:900px){
-  .tarjetas{grid-template-columns:repeat(3,1fr)}
   .tarjeta{padding:32px 24px}
-  /* Con 5 tarjetas, las dos últimas quedan centradas */
-  .tarjeta:nth-child(4){grid-column:1 / 2;margin-inline-start:auto;width:100%}
 }
 
 .aviso{
