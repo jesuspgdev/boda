@@ -16,9 +16,8 @@
      8. Mapa (se carga solo cuando hace falta)
      9. Añadir al calendario
     10. Compartir invitación
-    11. Enlace del formulario
-    12. Fotos (portada, parallax y cierre)
-    13. Música de fondo
+    11. Fotos (portada, parallax y cierre)
+    12. Música de fondo
    ================================================================= */
 
 
@@ -27,19 +26,15 @@
    ================================================================ */
 const CONFIG = {
 
-  /* Fecha y hora de la ceremonia: sábado 17 de octubre de 2026, 19:00.
+  /* Fecha y hora de la ceremonia: sábado 17 de octubre de 2026, 18:00.
      El "+02:00" es el horario de verano español, que ese día sigue
      vigente (el cambio de hora es el 25 de octubre). Gracias a eso la
      cuenta atrás sale bien esté donde esté el invitado. */
-  fechaBoda: '2026-10-17T19:00:00+02:00',
+  fechaBoda: '2026-10-17T18:00:00+02:00',
 
   /* Cuántas horas dura el evento. Solo se usa para el archivo de
      calendario, para que el invitado no se bloquee el día entero. */
   duracionHoras: 10,
-
-  /* Enlace del formulario de confirmación (Google Forms).
-     Se abre en pestaña nueva desde todos los botones de confirmar. */
-  formulario: 'https://docs.google.com/forms/d/e/1FAIpQLSdD9nJdal2QIGYYscEnS0RkpFOHQZ9p-4FgyFSfkqTuB9Z9xw/viewform?usp=header',
 
   /* UBICACIÓN · se toca solo aquí. El JS pone este enlace en todos los
      botones de "Cómo llegar" y monta con él el mapa incrustado.
@@ -72,7 +67,7 @@ const CONFIG = {
   fotos: {
     portada:  'fotos/portada.jpg',   /* los novios en la puerta marrón (fondo del inicio) */
     parallax: 'fotos/arco.jpg',      /* el arco con vistas al valle (sección con capa oscura) */
-    banda:    'fotos/foto.jpg',      /* el plano abierto de la puerta (banda entre regalos y confirmar) */
+    banda:    'fotos/foto.jpg',      /* el plano abierto de la puerta (banda entre regalos y el cierre) */
     cierre:   'fotos/ramo.jpg'       /* el primer plano con el ramo (dentro de la corona) */
   },
 
@@ -141,7 +136,6 @@ const Idioma = (() => {
     yaCasados:     { es:'¡Ya estamos casados! Gracias por acompañarnos.',   ar:'لقد تزوّجنا! شكرًا لمشاركتنا هذا اليوم.' },
     enlaceCopiado: { es:'Enlace copiado. ¡Compártelo!',                     ar:'تم نسخ الرابط. شاركه!' },
     calendarioOk:  { es:'Evento descargado. Ábrelo para añadirlo.',         ar:'تم تنزيل الحدث. افتحه لإضافته.' },
-    sinFormulario: { es:'El formulario aún no está listo. Lo publicaremos aquí muy pronto.', ar:'الاستمارة ليست جاهزة بعد. سننشرها هنا قريبًا.' },
     sinMusica:     { es:'La música estará lista muy pronto.',               ar:'ستكون الموسيقى جاهزة قريبًا.' },
     musicaYoutube: { es:'Abrimos nuestra canción en YouTube. ♪',            ar:'نفتح أغنيتنا على يوتيوب. ♪' }
   };
@@ -322,19 +316,19 @@ const Idioma = (() => {
    6 · BARRA DE ACCIONES INFERIOR (solo móvil)
    -----------------------------------------------------------------
    Aparece cuando el invitado ya ha pasado la portada y desaparece
-   cuando llega a la sección de confirmar, donde ya no aporta nada.
+   cuando llega al cierre, donde ya no aporta nada.
    ================================================================ */
 (() => {
   const barra = $('#barra-inferior');
   const portada = $('#inicio');
-  const rsvp = $('#confirmar');
+  const cierre = $('.cierre');
 
   let portadaVisible = true;
-  let rsvpVisible = false;
+  let cierreVisible = false;
   let montada = false;
 
   function revisar(){
-    const mostrar = esMovil() && !portadaVisible && !rsvpVisible;
+    const mostrar = esMovil() && !portadaVisible && !cierreVisible;
 
     if (mostrar && !montada){
       barra.hidden = false;
@@ -359,9 +353,9 @@ const Idioma = (() => {
     }, { threshold: 0.15 }).observe(portada);
 
     new IntersectionObserver(entradas => {
-      rsvpVisible = entradas[0].isIntersecting;
+      cierreVisible = entradas[0].isIntersecting;
       revisar();
-    }, { threshold: 0.2 }).observe(rsvp);
+    }, { threshold: 0.2 }).observe(cierre);
   }
 
   window.addEventListener('resize', revisar);
@@ -549,40 +543,7 @@ const Idioma = (() => {
 
 
 /* ================================================================
-   11 · ENLACE DEL FORMULARIO
-   -----------------------------------------------------------------
-   Todos los botones con la clase "enlace-formulario" (el de la
-   portada y el de la sección de confirmar) abren el Google Forms
-   en una pestaña nueva.
-   ================================================================ */
-(() => {
-  const botones = $$('.enlace-formulario');
-  const url = (CONFIG.formulario || '').trim();
-
-  botones.forEach(boton => {
-    if (url){
-      boton.href = url;
-      boton.target = '_blank';
-      boton.rel = 'noopener noreferrer';
-      return;
-    }
-
-    /* Todavía no hay formulario: el botón se ve apagado y lo explica */
-    boton.classList.add('sin-enlace');
-    boton.setAttribute('aria-disabled','true');
-    boton.removeAttribute('target');
-    boton.href = '#confirmar';
-
-    boton.addEventListener('click', evento => {
-      evento.preventDefault();
-      avisar(Idioma.texto('sinFormulario'));
-    });
-  });
-})();
-
-
-/* ================================================================
-   12 · FOTOS (portada, parallax y cierre)
+   11 · FOTOS (portada, parallax y cierre)
    -----------------------------------------------------------------
    Cada foto se intenta cargar primero en memoria. Solo si el archivo
    existe de verdad se pone en la página; si falta, la web se queda
@@ -629,7 +590,7 @@ const Idioma = (() => {
 
 
 /* ================================================================
-   13 · MÚSICA DE FONDO
+   12 · MÚSICA DE FONDO
    -----------------------------------------------------------------
    La música arranca sola al entrar. Ojo: TODOS los navegadores
    bloquean el sonido automático en la primera visita (es una norma
